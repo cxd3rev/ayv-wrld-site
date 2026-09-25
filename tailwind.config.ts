@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#070B14",
+        ink: "#0A0A0A",
         paper: "#F5F5F5",
         navy: "#1D4ED8",
-        card: "#10151F",
+        card: "#151515",
       },
       fontFamily: {
         sans: [
