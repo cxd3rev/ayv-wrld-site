@@ -9,11 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        ink: "#0A0A0A",
+        paper: "#F5F5F5",
+        navy: "#1B2E7A",
+        card: "#151515",
+      },
+      fontFamily: {
+        sans: [
+          "var(--font-body)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        display: [
+          "var(--font-display)",
+          "var(--font-body)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+      },
+      letterSpacing: {
+        display: "-0.045em",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
