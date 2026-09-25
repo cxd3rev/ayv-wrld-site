@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         ink: "#070B14",
         paper: "#F5F5F5",
-        navy: "#9A9A9A",
+        navy: "#1D4ED8",
         card: "#10151F",
       },
       fontFamily: {

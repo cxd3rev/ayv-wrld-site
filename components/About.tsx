@@ -90,7 +90,7 @@ export function About() {
             </div>
             <button
               type="submit"
-              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-medium text-[#0A0A0A] transition duration-300 hover:scale-[1.03] hover:bg-[#B5B5B5]"
+              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-navy px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0]"
             >
               Get in touch
             </button>

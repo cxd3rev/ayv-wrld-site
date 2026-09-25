@@ -15,14 +15,14 @@ html {
 
 body {
   background:
-    radial-gradient(ellipse 90% 42% at 50% -8%, rgba(154, 154, 154, 0.22), transparent 58%),
+    radial-gradient(ellipse 90% 42% at 50% -8%, rgba(29, 78, 216, 0.22), transparent 58%),
     #070b14;
   color: #f5f5f5;
 }
 
 ::selection {
-  background: #9a9a9a;
-  color: #0a0a0a;
+  background: #1d4ed8;
+  color: #f5f5f5;
 }
 
 :focus-visible {
@@ -46,7 +46,7 @@ body {
 
 .halftone {
   background-image: radial-gradient(
-    rgba(154, 154, 154, 0.32) 0.65px,
+    rgba(120, 160, 255, 0.32) 0.65px,
     transparent 0.7px
   );
   background-size: 3.5px 3.5px;
