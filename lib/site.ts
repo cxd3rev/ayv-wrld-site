@@ -28,7 +28,7 @@ export const navLinks = [
 export const hero = {
   // PLACEHOLDER: hero eyebrow label.
   eyebrow: "Independent studio",
-  title: ["Software,", "built solo.", "Shipped fast."],
+  title: ["Achieve", "Your", "Vision"],
   subtext:
     "Independent developer building SaaS products, apps, and tools under the AYV WRLD name.",
 };
