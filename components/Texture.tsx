@@ -4,8 +4,8 @@ export function Texture({ strong = false }: { strong?: boolean }) {
       <div
         className={
           strong
-            ? "absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(29,78,216,0.2),transparent_62%)]"
-            : "absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(29,78,216,0.07),transparent_68%)]"
+            ? "absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(154,154,154,0.2),transparent_62%)]"
+            : "absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(154,154,154,0.07),transparent_68%)]"
         }
       />
       <div className={strong ? "absolute inset-0 halftone" : "absolute inset-0 halftone opacity-40"} />

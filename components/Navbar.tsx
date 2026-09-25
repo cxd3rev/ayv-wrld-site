@@ -64,7 +64,7 @@ export function Navbar() {
           ))}
           <a
             href="#contact"
-            className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0]"
+            className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-[#0A0A0A] transition duration-300 hover:scale-[1.03] hover:bg-[#B5B5B5]"
           >
             Get in touch
           </a>
@@ -115,7 +115,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-navy text-sm font-medium text-paper"
+              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-navy text-sm font-medium text-[#0A0A0A]"
             >
               Get in touch
             </a>
