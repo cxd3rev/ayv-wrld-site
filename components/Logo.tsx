@@ -37,7 +37,8 @@ export function Logo({
   const inherited = useSurfaceTone();
   const surface = tone ?? inherited;
   const variant = surface === "light" ? "black" : "white";
-  const src = `/logos/${brand}-logo-${variant}.png`;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const src = `${basePath}/logos/${brand}-logo-${variant}.png`;
   const alt = decorative ? "" : altText[brand];
 
   if (fill) {
