@@ -64,7 +64,7 @@ export function Navbar() {
           ))}
           <a
             href="#contact"
-            className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#24398f]"
+            className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0]"
           >
             Get in touch
           </a>
