@@ -20,11 +20,11 @@ function clamp(value: number, min: number, max: number) {
 function orbitMetrics(width: number, height: number) {
   const minSide = Math.min(width, height);
   const satellite = Math.round(clamp(minSide * 0.132, 80, 108));
-  const center = Math.round(satellite * 1.58);
+  const center = Math.round(satellite * 2.2);
   const pad = 36;
   const edgeLimit = minSide / 2 - satellite / 2 - pad;
-  const gapFloor = center / 2 + satellite / 2 + minSide * 0.04;
-  const generous = minSide * 0.34;
+  const gapFloor = center / 2 + satellite / 2 + minSide * 0.055;
+  const generous = minSide * 0.37;
   const radius = Math.max(72, Math.min(edgeLimit, Math.max(generous, gapFloor)));
   return { satellite, center, radius };
 }
@@ -254,7 +254,7 @@ export function HeroOrbit() {
                   clear();
                 }}
                 aria-label={activeProject ? "Show all projects" : "AYV WRLD"}
-                className="absolute left-1/2 top-1/2 z-[5] border-0 bg-transparent p-0"
+                className="group absolute left-1/2 top-1/2 z-[5] border-0 bg-transparent p-0"
                 style={{
                   width: metrics.center,
                   height: metrics.center,
@@ -262,7 +262,9 @@ export function HeroOrbit() {
                   marginTop: -metrics.center / 2,
                 }}
               >
-                <Logo brand="ayvwrld" decorative priority className="h-full w-full" />
+                <span className="logo-affordance block h-full w-full">
+                  <Logo brand="ayvwrld" decorative priority className="h-full w-full" />
+                </span>
               </motion.button>
 
               {orbitProjects.map((project, index) => {
@@ -290,7 +292,7 @@ export function HeroOrbit() {
                     }}
                     aria-pressed={isActive}
                     aria-label={project.name}
-                    className="absolute left-1/2 top-1/2 z-10 border-0 bg-transparent p-0"
+                    className="group absolute left-1/2 top-1/2 z-10 border-0 bg-transparent p-0"
                     style={{
                       width: metrics.satellite,
                       height: metrics.satellite,
@@ -313,7 +315,9 @@ export function HeroOrbit() {
                           : { duration: reduceMotion ? 0 : 0.28 }
                       }
                     >
-                      <ProjectMark project={project} />
+                      <span className="logo-affordance block h-full w-full">
+                        <ProjectMark project={project} />
+                      </span>
                     </motion.span>
                   </motion.button>
                 );
@@ -364,9 +368,11 @@ export function HeroOrbit() {
               clear();
             }}
             aria-label={activeProject ? "Show all projects" : "AYV WRLD"}
-            className="h-28 w-28 border-0 bg-transparent p-0"
+            className="group h-40 w-40 border-0 bg-transparent p-0"
           >
-            <Logo brand="ayvwrld" decorative priority className="h-full w-full" />
+            <span className="logo-affordance block h-full w-full">
+              <Logo brand="ayvwrld" decorative priority className="h-full w-full" />
+            </span>
           </button>
 
           <div className="mt-10 grid w-full max-w-sm grid-cols-6 gap-x-3 gap-y-5">
@@ -391,9 +397,9 @@ export function HeroOrbit() {
                     }}
                     aria-pressed={isActive}
                     aria-label={project.name}
-                    className="relative mx-auto block h-[4.75rem] w-[4.75rem] border-0 bg-transparent p-0"
+                    className="group relative mx-auto block h-[4.75rem] w-[4.75rem] border-0 bg-transparent p-0"
                   >
-                    <span className="absolute inset-0">
+                    <span className="logo-affordance absolute inset-0">
                       <ProjectMark project={project} />
                     </span>
                   </motion.button>
