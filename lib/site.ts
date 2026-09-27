@@ -44,6 +44,11 @@ export type OrbitProject = {
   href?: string;
   external?: boolean;
   comingSoon?: boolean;
+  /** Public path to a real device screenshot. Omit when none exists. */
+  preview?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export const orbitProjects: OrbitProject[] = [
@@ -55,16 +60,20 @@ export const orbitProjects: OrbitProject[] = [
     brand: "ayvstack",
     // PLACEHOLDER: real Automation Stack URL. This stays on #automation-pack until that exists.
     href: links.automationPack,
+    // PLACEHOLDER: no real Automation Stack screenshot. Leave preview unset.
   },
   {
     id: "dili",
     name: "Dili Paints",
     description:
       "A client website built for a Belgian painting company offering interior and exterior painting services across Flanders.",
-    // PLACEHOLDER: swap in public/logos/dili-logo-white.png when a real file exists.
-    wordmark: "Dili",
+    brand: "dili",
     href: links.diliPaints,
     external: true,
+    preview: {
+      src: "/previews/dili-mobile.png",
+      alt: "Dili Paints homepage on a phone",
+    },
   },
   {
     id: "rated",
@@ -72,6 +81,10 @@ export const orbitProjects: OrbitProject[] = [
     description: "A mobile app for rating and ranking your favorite hip-hop albums.",
     brand: "rated",
     comingSoon: true,
+    preview: {
+      src: "/previews/rated-mobile.png",
+      alt: "Rated homepage on a phone",
+    },
   },
   {
     id: "kleuro",
@@ -80,6 +93,7 @@ export const orbitProjects: OrbitProject[] = [
       "An app that lets you photograph a room and instantly preview it repainted in different colors.",
     brand: "kleuro",
     comingSoon: true,
+    // PLACEHOLDER: no real Kleuro screenshot. Leave preview unset.
   },
   {
     id: "oma",
@@ -88,6 +102,10 @@ export const orbitProjects: OrbitProject[] = [
       "A course teaching, step by step, the exact tools and workflow used to build and ship SaaS products solo.",
     brand: "oma",
     href: links.course,
+    preview: {
+      src: "/previews/oma-mobile.png",
+      alt: "One Man Army Stack course page on a phone",
+    },
   },
 ];
 

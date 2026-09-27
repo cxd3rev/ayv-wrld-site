@@ -21,10 +21,13 @@ function orbitMetrics(width: number, height: number) {
   const minSide = Math.min(width, height);
   const satellite = Math.round(clamp(minSide * 0.132, 80, 108));
   const center = Math.round(satellite * 2.2);
-  const pad = 36;
+  // Names sit just under each mark, so the ring stays clear of the center
+  // and of the stage edge.
+  const labelDrop = 22;
+  const pad = 18 + labelDrop;
   const edgeLimit = minSide / 2 - satellite / 2 - pad;
-  const gapFloor = center / 2 + satellite / 2 + minSide * 0.055;
-  const generous = minSide * 0.37;
+  const gapFloor = center / 2 + satellite / 2 + labelDrop + 10;
+  const generous = minSide * 0.34;
   const radius = Math.max(72, Math.min(edgeLimit, Math.max(generous, gapFloor)));
   return { satellite, center, radius };
 }
@@ -42,10 +45,10 @@ function orbitOffset(index: number, count: number, radius: number) {
  * clear of the detail card and every satellite remains clickable.
  */
 function clearedRadius(stageWidth: number, satellite: number, idleRadius: number) {
-  const panelWidth = Math.min(384, stageWidth * 0.32);
-  const panelLeft = stageWidth * 0.94 - panelWidth;
+  const panelWidth = Math.min(352, stageWidth * 0.28);
+  const panelLeft = stageWidth * 0.95 - panelWidth;
   const rightmost = Math.cos(-Math.PI / 2 + (1 / orbitProjects.length) * Math.PI * 2);
-  const maxOffset = panelLeft - 28 - satellite / 2 - stageWidth / 2;
+  const maxOffset = panelLeft - 20 - satellite / 2 - stageWidth / 2;
   if (rightmost <= 0.2) return idleRadius;
   return clamp(Math.min(idleRadius, maxOffset / rightmost), satellite * 1.25, idleRadius);
 }
@@ -111,8 +114,40 @@ function ProjectMark({ project }: { project: OrbitProject }) {
 
   return (
     <span className="flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-card px-2 text-center font-display text-base font-semibold tracking-display text-paper">
-      {/* PLACEHOLDER: swap in public/logos/dili-logo-white.png when a real file exists. */}
       {project.wordmark}
+    </span>
+  );
+}
+
+function publicPath(path: string) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  return `${basePath}${path}`;
+}
+
+/** Rounded phone bezel. Only rendered when a real screenshot exists. */
+function DevicePreview({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="mb-5 flex justify-center">
+      <div className="w-[4.65rem] rounded-[1.15rem] border border-white/20 bg-[#121212] p-[5px] shadow-[inset_0_1px_0_rgba(255,255,255,0.42),0_14px_28px_rgba(0,0,0,0.45)] lg:w-[6.15rem] lg:rounded-[1.45rem] lg:p-1.5">
+        {/* next/image drops the GitHub Pages basePath when unoptimized. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={publicPath(src)}
+          alt={alt}
+          width={780}
+          height={1688}
+          draggable={false}
+          className="aspect-[390/844] w-full rounded-[0.85rem] object-cover object-top lg:rounded-[1.05rem]"
+        />
+      </div>
+    </div>
+  );
+}
+
+function OrbitName({ name }: { name: string }) {
+  return (
+    <span className="absolute left-1/2 top-[calc(100%+6px)] -translate-x-1/2 whitespace-nowrap text-[11px] font-semibold leading-none tracking-tight text-paper/90 [text-shadow:0_1px_2px_rgba(0,0,0,0.95),0_6px_14px_rgba(0,0,0,0.8)]">
+      {name}
     </span>
   );
 }
@@ -120,7 +155,12 @@ function ProjectMark({ project }: { project: OrbitProject }) {
 function PanelBody({ project, titleId }: { project: OrbitProject; titleId: string }) {
   return (
     <>
-      <span aria-hidden className="mb-5 inline-block h-2 w-2 bg-navy" />
+      {project.preview ? (
+        <DevicePreview src={project.preview.src} alt={project.preview.alt} />
+      ) : (
+        // PLACEHOLDER: no device frame until project.preview points at a real screenshot.
+        <span aria-hidden className="mb-5 inline-block h-2 w-2 bg-navy" />
+      )}
       <h2
         id={titleId}
         className="font-display text-3xl font-bold leading-[0.95] tracking-display sm:text-4xl"
@@ -291,8 +331,7 @@ export function HeroOrbit() {
                       toggle(project.id);
                     }}
                     aria-pressed={isActive}
-                    aria-label={project.name}
-                    className="group absolute left-1/2 top-1/2 z-10 border-0 bg-transparent p-0"
+                    className="group absolute left-1/2 top-1/2 z-10 overflow-visible border-0 bg-transparent p-0"
                     style={{
                       width: metrics.satellite,
                       height: metrics.satellite,
@@ -318,6 +357,7 @@ export function HeroOrbit() {
                       <span className="logo-affordance block h-full w-full">
                         <ProjectMark project={project} />
                       </span>
+                      <OrbitName name={project.name} />
                     </motion.span>
                   </motion.button>
                 );
@@ -344,7 +384,7 @@ export function HeroOrbit() {
                       y: "-50%",
                       transition: { duration: 0.24, ease: EASE },
                     }}
-                    className={`absolute right-[6%] top-1/2 z-30 w-[min(24rem,32%)] ${panelSurface}`}
+                    className={`absolute right-[5%] top-1/2 z-30 max-h-[calc(100%-2.5rem)] w-[min(22rem,28%)] overflow-y-auto ${panelSurface}`}
                   >
                     <PanelBody project={active} titleId="orbit-panel-desktop-title" />
                   </motion.div>
@@ -375,7 +415,7 @@ export function HeroOrbit() {
             </span>
           </button>
 
-          <div className="mt-10 grid w-full max-w-sm grid-cols-6 gap-x-3 gap-y-5">
+          <div className="mt-8 grid w-full max-w-sm grid-cols-6 gap-x-2 gap-y-5">
             {orbitProjects.map((project, index) => {
               const isActive = project.id === activeProject;
               const dimmed = activeProject !== null && !isActive;
@@ -396,11 +436,13 @@ export function HeroOrbit() {
                       toggle(project.id);
                     }}
                     aria-pressed={isActive}
-                    aria-label={project.name}
-                    className="group relative mx-auto block h-[4.75rem] w-[4.75rem] border-0 bg-transparent p-0"
+                    className="group flex w-full flex-col items-center gap-1.5 border-0 bg-transparent p-0"
                   >
-                    <span className="logo-affordance absolute inset-0">
+                    <span className="logo-affordance relative block h-[4.25rem] w-[4.25rem]">
                       <ProjectMark project={project} />
+                    </span>
+                    <span className="w-full text-balance text-center text-[11px] font-semibold leading-tight tracking-tight text-paper/90">
+                      {project.name}
                     </span>
                   </motion.button>
                 </div>
