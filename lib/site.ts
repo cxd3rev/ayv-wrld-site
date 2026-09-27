@@ -1,3 +1,5 @@
+import type { LogoBrand } from "@/components/Logo";
+
 /**
  * Marketing copy and outbound links for the AYV WRLD hub.
  * Search this file for "PLACEHOLDER" and replace those lines.
@@ -33,6 +35,62 @@ export const hero = {
     "Independent developer building SaaS products, apps, and tools under the AYV WRLD name.",
 };
 
+export type OrbitProject = {
+  id: string;
+  name: string;
+  description: string;
+  brand?: LogoBrand;
+  wordmark?: string;
+  href?: string;
+  external?: boolean;
+  comingSoon?: boolean;
+};
+
+export const orbitProjects: OrbitProject[] = [
+  {
+    id: "ayvstack",
+    name: "AYV Automation Stack",
+    description:
+      "A modular SaaS suite of 6 connected tools that help businesses convert leads, manage bookings, follow up on quotes and invoices, and win more reviews.",
+    brand: "ayvstack",
+    // PLACEHOLDER: real Automation Stack URL. This stays on #automation-pack until that exists.
+    href: links.automationPack,
+  },
+  {
+    id: "dili",
+    name: "Dili Paints",
+    description:
+      "A client website built for a Belgian painting company offering interior and exterior painting services across Flanders.",
+    // PLACEHOLDER: swap in public/logos/dili-logo-white.png when a real file exists.
+    wordmark: "Dili",
+    href: links.diliPaints,
+    external: true,
+  },
+  {
+    id: "rated",
+    name: "Rated",
+    description: "A mobile app for rating and ranking your favorite hip-hop albums.",
+    brand: "rated",
+    comingSoon: true,
+  },
+  {
+    id: "kleuro",
+    name: "Kleuro",
+    description:
+      "An app that lets you photograph a room and instantly preview it repainted in different colors.",
+    brand: "kleuro",
+    comingSoon: true,
+  },
+  {
+    id: "oma",
+    name: "One Man Army Stack",
+    description:
+      "A course teaching, step by step, the exact tools and workflow used to build and ship SaaS products solo.",
+    brand: "oma",
+    href: links.course,
+  },
+];
+
 export const products = {
   // PLACEHOLDER: products section headline.
   title: "Shipped under one name.",
@@ -54,7 +112,7 @@ export const products = {
       id: "kleuro",
       name: "Kleuro",
       pitch: "Point your camera at a room. See it repainted instantly.",
-      brand: null,
+      brand: "kleuro" as const,
     },
   ],
 };

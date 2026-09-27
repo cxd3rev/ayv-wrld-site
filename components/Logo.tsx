@@ -3,13 +3,14 @@
 import Image from "next/image";
 import { useSurfaceTone, type SurfaceTone } from "@/components/Surface";
 
-export type LogoBrand = "ayvwrld" | "ayvstack" | "oma" | "rated";
+export type LogoBrand = "ayvwrld" | "ayvstack" | "oma" | "rated" | "kleuro";
 
 const altText: Record<LogoBrand, string> = {
   ayvwrld: "AYV WRLD",
   ayvstack: "AYV Automation Pack",
   oma: "One Man Army Stack",
   rated: "Rated",
+  kleuro: "Kleuro",
 };
 
 type LogoProps = {
@@ -36,7 +37,10 @@ export function Logo({
 }: LogoProps) {
   const inherited = useSurfaceTone();
   const surface = tone ?? inherited;
-  const variant = surface === "light" ? "black" : "white";
+  // Kleuro is a purple/blue/cyan gradient. A black recolor would flatten it,
+  // so every surface uses the transparent colorful mark.
+  const variant =
+    brand === "kleuro" ? "white" : surface === "light" ? "black" : "white";
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const src = `${basePath}/logos/${brand}-logo-${variant}.png`;
   const alt = decorative ? "" : altText[brand];

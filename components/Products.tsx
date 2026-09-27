@@ -72,9 +72,6 @@ export function Products() {
                 {product.brand ? (
                   <Logo brand={product.brand} className="h-14 w-14" />
                 ) : null}
-                {/* PLACEHOLDER: Kleuro has no logomark yet, so the heading is the wordmark.
-                    Add /public/logos/kleuro-logo-white.png and kleuro-logo-black.png,
-                    then render <Logo brand="kleuro" className="h-14 w-14" /> above this heading. */}
                 <h3
                   className={`font-display text-3xl font-bold tracking-display ${
                     product.brand ? "mt-8" : "mt-1 pr-28"
