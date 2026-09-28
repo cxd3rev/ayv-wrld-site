@@ -11,6 +11,7 @@ export const links = {
   // PLACEHOLDER: replace with the live One Man Army Stack course URL.
   course: "#course",
   diliPaints: "https://dilipaints.be/",
+  rated: "https://rated-ivory.vercel.app/",
   // PLACEHOLDER: replace with your public email address.
   email: "hello@ayvwrld.com",
   // PLACEHOLDER: replace with your real social profile URLs.
@@ -80,7 +81,8 @@ export const orbitProjects: OrbitProject[] = [
     name: "Rated",
     description: "A mobile app for rating and ranking your favorite hip-hop albums.",
     brand: "rated",
-    comingSoon: true,
+    href: links.rated,
+    external: true,
     preview: {
       src: "/previews/rated-mobile.png",
       alt: "Rated homepage on a phone",
@@ -125,6 +127,9 @@ export const products = {
       name: "Rated",
       pitch: "Rate and rank your favorite hip-hop albums.",
       brand: "rated" as const,
+      href: links.rated,
+      external: true,
+      cta: "Read more",
     },
     {
       id: "kleuro",
@@ -173,7 +178,7 @@ export const about = {
 
 export const footerLinks = [
   { label: "AYV Automation Pack", href: "#automation-pack" },
-  { label: "Rated", href: "#rated" },
+  { label: "Rated", href: links.rated, external: true },
   { label: "Kleuro", href: "#kleuro" },
   { label: "One Man Army Stack", href: "#course" },
   { label: "Dili Paints", href: links.diliPaints, external: true },

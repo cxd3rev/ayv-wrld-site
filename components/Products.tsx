@@ -60,34 +60,54 @@ export function Products() {
             </article>
           </Reveal>
 
-          {products.upcoming.map((product, index) => (
-            <Reveal key={product.id} delay={index * 0.06} className="h-full">
-              <article
-                id={product.id}
-                className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-7 opacity-80 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 hover:opacity-100 sm:p-8"
-              >
-                <span className="absolute right-5 top-5 rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-paper/70">
-                  Coming soon
-                </span>
-                {product.brand ? (
-                  <Logo brand={product.brand} className="h-14 w-14" />
-                ) : null}
-                <h3
-                  className={`font-display text-3xl font-bold tracking-display ${
-                    product.brand ? "mt-8" : "mt-1 pr-28"
+          {products.upcoming.map((product, index) => {
+            const href = "href" in product ? product.href : undefined;
+
+            return (
+              <Reveal key={product.id} delay={index * 0.06} className="h-full">
+                <article
+                  id={product.id}
+                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-7 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-8 ${
+                    href ? "" : "opacity-80 hover:opacity-100"
                   }`}
                 >
-                  {product.name}
-                </h3>
-                <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/65">
-                  {product.pitch}
-                </p>
-                <div className="mt-auto">
-                  <WaitlistForm product={product.name} />
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                  {href ? null : (
+                    <span className="absolute right-5 top-5 rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-paper/70">
+                      Coming soon
+                    </span>
+                  )}
+                  {product.brand ? (
+                    <Logo brand={product.brand} className="h-14 w-14" />
+                  ) : null}
+                  <h3
+                    className={`font-display text-3xl font-bold tracking-display ${
+                      product.brand ? "mt-8" : "mt-1 pr-28"
+                    }`}
+                  >
+                    {product.name}
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/65">
+                    {product.pitch}
+                  </p>
+                  <div className="mt-auto">
+                    {href ? (
+                      <div className="mt-8">
+                        <ArrowLink
+                          href={href}
+                          external={"external" in product ? product.external : false}
+                        >
+                          {"cta" in product ? product.cta : "Read more"}
+                          <span className="sr-only"> (opens in a new tab)</span>
+                        </ArrowLink>
+                      </div>
+                    ) : (
+                      <WaitlistForm product={product.name} />
+                    )}
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
