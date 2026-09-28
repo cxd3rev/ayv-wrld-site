@@ -14,6 +14,16 @@ const altText: Record<LogoBrand, string> = {
   dili: "Dili Paints",
 };
 
+/** White / gradient marks. Kleuro and Dili keep their grey artwork. */
+const whiteMark: Record<LogoBrand, string> = {
+  ayvwrld: "ayvwrld-logo-white.png",
+  ayvstack: "ayvstack-logo-white.png",
+  oma: "oma-logo-w.png",
+  rated: "rated-logo-w.png",
+  kleuro: "kleuro-logo-w.png",
+  dili: "dilipaints-logo-w.png",
+};
+
 type LogoProps = {
   brand: LogoBrand;
   className?: string;
@@ -38,7 +48,7 @@ export function Logo({
 }: LogoProps) {
   const inherited = useSurfaceTone();
   const surface = tone ?? inherited;
-  // Kleuro is a gradient and Dili is a blue monogram. A black recolor would
+  // Kleuro is a gradient and Dili is a grey monogram. A black recolor would
   // flatten them, so every surface uses the single transparent mark.
   const variant =
     brand === "kleuro" || brand === "dili"
@@ -47,7 +57,9 @@ export function Logo({
         ? "black"
         : "white";
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  const src = `${basePath}/logos/${brand}-logo-${variant}.png`;
+  const file =
+    variant === "black" ? `${brand}-logo-black.png` : whiteMark[brand];
+  const src = `${basePath}/logos/${file}`;
   const alt = decorative ? "" : altText[brand];
 
   if (fill) {

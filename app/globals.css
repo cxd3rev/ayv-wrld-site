@@ -50,26 +50,8 @@ body {
   background-size: 3.5px 3.5px;
 }
 
-/* Hover lives on an inner wrapper so it multiplies with the orbit
-   position/scale animation and does not shift layout. */
-.logo-affordance {
-  transform-origin: center;
-  transition:
-    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 200ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.group:hover .logo-affordance {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 10px rgba(245, 245, 245, 0.28));
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .logo-affordance {
-    transition: none;
   }
 }

@@ -1,4 +1,4 @@
-import { HeroOrbit } from "@/components/HeroOrbit";
+import { LogoMass } from "@/components/LogoMass";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { hero } from "@/lib/site";
@@ -6,7 +6,7 @@ import { hero } from "@/lib/site";
 export function Hero() {
   return (
     <>
-      <HeroOrbit />
+      <LogoMass />
       <section aria-labelledby="studio-title" className="relative py-20 md:py-28 lg:py-32">
         <div className="shell">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
