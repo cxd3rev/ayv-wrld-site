@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { MotionProvider } from "@/components/MotionProvider";
 import { Surface } from "@/components/Surface";
 import "./globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
             {children}
           </MotionProvider>
         </Surface>
+        <Analytics />
       </body>
     </html>
   );
