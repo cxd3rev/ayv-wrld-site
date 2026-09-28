@@ -53,8 +53,9 @@ export function Products() {
                     {products.featured.pitch}
                   </p>
                 </div>
-                <ArrowLink href={products.featured.href}>
+                <ArrowLink href={products.featured.href} external={products.featured.external}>
                   {products.featured.cta}
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </ArrowLink>
               </div>
             </article>

@@ -29,18 +29,16 @@ export type HubLogo = {
   centre?: boolean;
 };
 
-// TODO: paste the real AYV Automation Stack URL. Do not invent a domain.
-// While this is empty, the stack mark uses the temporary in-page link below
-// and the module marks do not navigate.
-export const AUTOMATION_STACK_URL: string = "";
+export const AUTOMATION_STACK_URL = "https://www.ayvautomation.space";
 
 // TODO: paste the real OMA site URL. Do not invent a domain.
 // While this is empty, the OMA mark uses the temporary in-page #course link.
 export const OMA_SITE_URL: string = "";
 
-function moduleHref(anchor: string) {
-  if (!AUTOMATION_STACK_URL) return undefined;
-  return `${AUTOMATION_STACK_URL.replace(/\/$/, "")}#${anchor}`;
+// Product pages on the live stack site are /automation/{slug}.
+// The homepage has no #avyro-style anchors.
+function moduleHref(slug: string) {
+  return `${AUTOMATION_STACK_URL}/automation/${slug}`;
 }
 
 export const hubLogos: HubLogo[] = [
@@ -93,8 +91,7 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Automation Stack description.
     description: "Tools for leads, bookings, quotes, and reviews.",
     status: "live",
-    // TODO: replace this temporary #automation-pack link with AUTOMATION_STACK_URL.
-    href: AUTOMATION_STACK_URL || "#automation-pack",
+    href: AUTOMATION_STACK_URL,
     x: 32.2,
     y: 65.62,
     w: 19.46,
@@ -135,7 +132,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Avyro description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #avyro, once AUTOMATION_STACK_URL is set.
     href: moduleHref("avyro"),
     x: 42.87,
     y: 66.78,
@@ -150,7 +146,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Velto description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #velto, once AUTOMATION_STACK_URL is set.
     href: moduleHref("velto"),
     x: 38.88,
     y: 56.92,
@@ -165,7 +160,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Rovyn description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #rovyn, once AUTOMATION_STACK_URL is set.
     href: moduleHref("rovyn"),
     x: 26.88,
     y: 52.62,
@@ -180,7 +174,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Orvyn description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #orvyn, once AUTOMATION_STACK_URL is set.
     href: moduleHref("orvyn"),
     x: 32.68,
     y: 44.68,
@@ -195,7 +188,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Nexro description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #nexro, once AUTOMATION_STACK_URL is set.
     href: moduleHref("nexro"),
     x: 39.71,
     y: 81.92,
@@ -210,7 +202,6 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Ravelo description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    // TODO: Automation Stack site anchor #ravelo, once AUTOMATION_STACK_URL is set.
     href: moduleHref("ravelo"),
     x: 22.49,
     y: 65.87,

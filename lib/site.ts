@@ -4,8 +4,7 @@
  */
 
 export const links = {
-  // PLACEHOLDER: replace with the live AYV Automation Pack URL.
-  automationPack: "#automation-pack",
+  automationPack: "https://www.ayvautomation.space",
   // PLACEHOLDER: replace with the live One Man Army Stack course URL.
   course: "#course",
   diliPaints: "https://dilipaints.be/",
@@ -43,6 +42,7 @@ export const products = {
       "6 tools to help businesses get more clients, manage leads, and win reviews.",
     cta: "Explore the pack",
     href: links.automationPack,
+    external: true,
   },
   upcoming: [
     {
@@ -100,7 +100,7 @@ export const about = {
 };
 
 export const footerLinks = [
-  { label: "AYV Automation Pack", href: "#automation-pack" },
+  { label: "AYV Automation Pack", href: links.automationPack, external: true },
   { label: "Rated", href: links.rated, external: true },
   { label: "Kleuro", href: "#kleuro" },
   { label: "One Man Army Stack", href: "#course" },
