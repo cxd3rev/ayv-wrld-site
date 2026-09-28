@@ -14,14 +14,18 @@ const altText: Record<LogoBrand, string> = {
   dili: "Dili Paints",
 };
 
-/** White / gradient marks. Kleuro and Dili keep their grey artwork. */
+/**
+ * Tight crops for the navbar, course, and headlines.
+ * The hero cluster uses the untrimmed squares in /logos instead.
+ * Kleuro and Dili keep their grey artwork.
+ */
 const whiteMark: Record<LogoBrand, string> = {
-  ayvwrld: "ayvwrld-logo-white.png",
-  ayvstack: "ayvstack-logo-white.png",
-  oma: "oma-logo-w.png",
-  rated: "rated-logo-w.png",
-  kleuro: "kleuro-logo-w.png",
-  dili: "dilipaints-logo-w.png",
+  ayvwrld: "tight/ayvwrld-logo-white.png",
+  ayvstack: "tight/ayvstack-logo-white.png",
+  oma: "tight/oma-logo-w.png",
+  rated: "tight/rated-logo-w.png",
+  kleuro: "tight/kleuro-logo-w.png",
+  dili: "tight/dilipaints-logo-w.png",
 };
 
 type LogoProps = {

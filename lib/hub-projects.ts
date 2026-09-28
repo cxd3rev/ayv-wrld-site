@@ -1,206 +1,221 @@
-import { links } from "@/lib/site";
-
 /**
- * Packed logo cluster for the hub hero.
- * x/y are the centre of each mark, as a percentage of the cluster box.
- * size is a percentage of the cluster width. rotation is degrees.
+ * Hero cluster. x/y are the centre of each full padded square, as a percentage
+ * of the stage. w is the file width as a percentage of stage width. rot is
+ * clockwise degrees.
  *
- * public/reference/ayvwrld-collection.png was not in the repo, so these
- * positions are a tight, slightly asymmetric pack with roughly 10–20% overlap.
+ * public/reference/ayvwrld-collection.png was not in the repo or the local
+ * assets folder. These numbers are the supplied coordinate table.
+ *
+ * Search this file for "PLACEHOLDER" and "TODO" and edit those lines.
  */
 
 export type HubLogo = {
   id: string;
+  file: string;
   name: string;
-  /** Public path. The hero prefixes NEXT_PUBLIC_BASE_PATH. */
-  logo: string;
   description: string;
   status: "live" | "soon";
   x: number;
   y: number;
-  size: number;
-  rotation: number;
+  w: number;
+  rot: number;
   z: number;
   /**
-   * Destination. Omit for "soon" items and the centre mark.
-   * http(s) opens in a new tab. A hash stays in the same tab.
+   * Live destination. http(s) opens in a new tab. A hash stays in the same tab.
+   * Omit for the centre mark, "soon" items, and anything without a real URL.
    */
   href?: string;
-  /** Parent mark. Click scrolls to the top. Not a project destination. */
+  /** Centre brand. Click smooth-scrolls to the top. Not a link. */
   centre?: boolean;
-  /** Smaller marks around AYV Automation Stack. Hidden unless INCLUDE_MODULES. */
-  module?: boolean;
 };
 
-// TODO: replace with the real AYV Automation Stack URL.
-// The only existing target is the in-page #automation-pack section, so this
-// cluster links there in the same tab until a real site exists.
-const automationStackHref = links.automationPack;
+// TODO: paste the real AYV Automation Stack URL. Do not invent a domain.
+// While this is empty, the stack mark uses the temporary in-page link below
+// and the module marks do not navigate.
+export const AUTOMATION_STACK_URL: string = "";
 
-// TODO: replace with the real One Man Army Stack course URL.
-// Temporary same-tab link to the in-page #course section.
-const courseHref = links.course;
+// TODO: paste the real OMA site URL. Do not invent a domain.
+// While this is empty, the OMA mark uses the temporary in-page #course link.
+export const OMA_SITE_URL: string = "";
+
+function moduleHref(anchor: string) {
+  if (!AUTOMATION_STACK_URL) return undefined;
+  return `${AUTOMATION_STACK_URL.replace(/\/$/, "")}#${anchor}`;
+}
 
 export const hubLogos: HubLogo[] = [
   {
     id: "ayvwrld",
+    file: "ayvwrld-logo-white.png",
     name: "AYV WRLD",
-    logo: "/logos/ayvwrld-logo-white.png",
     // PLACEHOLDER: centre-mark description.
     description: "The studio mark.",
     status: "live",
     centre: true,
-    x: 50,
-    y: 46,
-    size: 44,
-    rotation: -6,
-    z: 2,
-  },
-  {
-    id: "ayvstack",
-    name: "AYV Automation Stack",
-    logo: "/logos/ayvstack-logo-white.png",
-    description: "Tools for leads, bookings, quotes, and reviews.",
-    status: "live",
-    href: automationStackHref,
-    x: 23,
-    y: 27,
-    size: 36,
-    rotation: 11,
-    z: 5,
-  },
-  {
-    id: "dili",
-    name: "Dili Paints",
-    logo: "/logos/dilipaints-logo-w.png",
-    description: "A website for a Belgian painting company.",
-    status: "live",
-    href: links.diliPaints,
-    x: 74,
-    y: 24,
-    size: 33,
-    rotation: -8,
-    z: 4,
-  },
-  {
-    id: "oma",
-    name: "One Man Army Stack",
-    logo: "/logos/oma-logo-w.png",
-    description: "A course on building and shipping SaaS products solo.",
-    status: "live",
-    href: courseHref,
-    x: 27,
-    y: 66,
-    size: 35,
-    rotation: 15,
-    z: 6,
+    x: 50.48,
+    y: 41.66,
+    w: 43.16,
+    rot: 0,
+    z: 1,
   },
   {
     id: "rated",
+    file: "rated-logo-w.png",
     name: "Rated",
-    logo: "/logos/rated-logo-w.png",
+    // PLACEHOLDER: Rated description.
     description: "Rate and rank your favorite hip-hop albums.",
     status: "soon",
-    x: 49,
-    y: 78,
-    size: 29,
-    rotation: 7,
-    z: 7,
+    x: 67.05,
+    y: 58.0,
+    w: 21.99,
+    rot: 0,
+    z: 2,
+  },
+  {
+    id: "oma",
+    file: "oma-logo-w.png",
+    name: "OMA",
+    // PLACEHOLDER: OMA description.
+    description: "A course on building and shipping SaaS products solo.",
+    status: "live",
+    // TODO: replace this temporary #course link with OMA_SITE_URL.
+    href: OMA_SITE_URL || "#course",
+    x: 51.73,
+    y: 76.1,
+    w: 22.47,
+    rot: 0,
+    z: 3,
+  },
+  {
+    id: "ayvstack",
+    file: "ayvstack-logo-white.png",
+    name: "AYV Automation Stack",
+    // PLACEHOLDER: Automation Stack description.
+    description: "Tools for leads, bookings, quotes, and reviews.",
+    status: "live",
+    // TODO: replace this temporary #automation-pack link with AUTOMATION_STACK_URL.
+    href: AUTOMATION_STACK_URL || "#automation-pack",
+    x: 32.2,
+    y: 65.62,
+    w: 19.46,
+    rot: 0,
+    z: 2,
+  },
+  {
+    id: "dilipaints",
+    file: "dilipaints-logo-w.png",
+    name: "Dili Paints",
+    // PLACEHOLDER: Dili Paints description.
+    description: "A website for a Belgian painting company.",
+    status: "live",
+    href: "https://dilipaints.be/",
+    x: 62.85,
+    y: 80.73,
+    w: 10.83,
+    rot: 20,
+    z: 4,
   },
   {
     id: "kleuro",
+    file: "kleuro-logo-w.png",
     name: "Kleuro",
-    logo: "/logos/kleuro-logo-w.png",
+    // PLACEHOLDER: Kleuro description.
     description: "Photograph a room and preview it in new colors.",
     status: "soon",
-    x: 75,
-    y: 62,
-    size: 33,
-    rotation: -12,
+    x: 70.67,
+    y: 34.16,
+    w: 10.88,
+    rot: 20,
     z: 4,
   },
   {
     id: "avyro",
+    file: "avyro-logo-w.png",
     name: "Avyro",
-    logo: "/logos/avyro-logo-w.png",
+    // PLACEHOLDER: Avyro description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 10,
-    y: 14,
-    size: 18,
-    rotation: -10,
-    z: 6,
+    // TODO: Automation Stack site anchor #avyro, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("avyro"),
+    x: 42.87,
+    y: 66.78,
+    w: 11.61,
+    rot: -100,
+    z: 3,
   },
   {
     id: "velto",
+    file: "velto-logo-w.png",
     name: "Velto",
-    logo: "/logos/velto-logo-w.png",
+    // PLACEHOLDER: Velto description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 36,
-    y: 12,
-    size: 16,
-    rotation: 8,
-    z: 6,
+    // TODO: Automation Stack site anchor #velto, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("velto"),
+    x: 38.88,
+    y: 56.92,
+    w: 10.93,
+    rot: -20,
+    z: 3,
   },
   {
     id: "rovyn",
+    file: "rovyn-logo-w.png",
     name: "Rovyn",
-    logo: "/logos/rovyn-logo-w.png",
+    // PLACEHOLDER: Rovyn description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 9,
-    y: 40,
-    size: 16,
-    rotation: 14,
-    z: 6,
+    // TODO: Automation Stack site anchor #rovyn, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("rovyn"),
+    x: 26.88,
+    y: 52.62,
+    w: 9.89,
+    rot: 20,
+    z: 3,
   },
   {
     id: "orvyn",
+    file: "orvyn-logo-w.png",
     name: "Orvyn",
-    logo: "/logos/orvyn-logo-w.png",
+    // PLACEHOLDER: Orvyn description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 38,
-    y: 42,
-    size: 15,
-    rotation: -6,
-    z: 6,
+    // TODO: Automation Stack site anchor #orvyn, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("orvyn"),
+    x: 32.68,
+    y: 44.68,
+    w: 11.51,
+    rot: 0,
+    z: 3,
   },
   {
     id: "nexro",
+    file: "nexro-logo-w.png",
     name: "Nexro",
-    logo: "/logos/nexro-logo-w.png",
+    // PLACEHOLDER: Nexro description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 18,
-    y: 8,
-    size: 14,
-    rotation: 4,
-    z: 7,
+    // TODO: Automation Stack site anchor #nexro, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("nexro"),
+    x: 39.71,
+    y: 81.92,
+    w: 9.59,
+    rot: 0,
+    z: 3,
   },
   {
     id: "ravelo",
+    file: "ravelo-logo-w.png",
     name: "Ravelo",
-    logo: "/logos/ravelo-logo-w.png",
+    // PLACEHOLDER: Ravelo description.
     description: "Part of the AYV Automation Stack.",
     status: "live",
-    href: automationStackHref,
-    module: true,
-    x: 6,
-    y: 26,
-    size: 15,
-    rotation: -16,
-    z: 6,
+    // TODO: Automation Stack site anchor #ravelo, once AUTOMATION_STACK_URL is set.
+    href: moduleHref("ravelo"),
+    x: 22.49,
+    y: 65.87,
+    w: 11.86,
+    rot: 0,
+    z: 3,
   },
 ];
