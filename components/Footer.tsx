@@ -36,6 +36,8 @@ const socials = [
 
 export function Footer() {
   const year = new Date().getFullYear();
+  // Hide dead "#" socials until real profile URLs are set in lib/site.ts.
+  const liveSocials = socials.filter((item) => item.href && item.href !== "#");
 
   return (
     <footer className="border-t border-white/10">
@@ -47,19 +49,22 @@ export function Footer() {
               AYV WRLD
             </span>
           </a>
-          <ul className="flex gap-3 sm:gap-4">
-            {socials.map((item) => (
-              <li key={item.label}>
-                <SafeLink
-                  href={item.href}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-paper/70 transition duration-300 hover:scale-105 hover:text-paper"
-                  aria-label={item.label}
-                >
-                  {item.icon}
-                </SafeLink>
-              </li>
-            ))}
-          </ul>
+          {liveSocials.length > 0 ? (
+            <ul className="flex gap-3 sm:gap-4">
+              {liveSocials.map((item) => (
+                <li key={item.label}>
+                  <SafeLink
+                    href={item.href}
+                    external
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-paper/70 transition duration-300 hover:scale-105 hover:text-paper"
+                    aria-label={item.label}
+                  >
+                    {item.icon}
+                  </SafeLink>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
 
         <ul className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">

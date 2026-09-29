@@ -62,7 +62,8 @@ export const hubLogos: HubLogo[] = [
     name: "Rated",
     // PLACEHOLDER: Rated description.
     description: "Rate and rank your favorite hip-hop albums.",
-    status: "soon",
+    status: "live",
+    href: "https://rated-ivory.vercel.app/",
     x: 67.05,
     y: 58.0,
     w: 21.99,

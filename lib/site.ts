@@ -13,6 +13,7 @@ export const links = {
   phone: "0468 56 33 64",
   phoneTel: "+32468563364",
   // PLACEHOLDER: replace with your real social profile URLs.
+  // Keep "#" until real profiles exist — Footer hides dead "#" links.
   x: "#",
   instagram: "#",
   github: "#",
