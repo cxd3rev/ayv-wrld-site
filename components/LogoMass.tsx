@@ -297,12 +297,12 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center bg-[#0A0A0A] px-5 pb-8 pt-20 md:h-[100svh] md:min-h-0 md:overflow-visible md:px-0 md:pb-0 md:pt-[4.5rem]"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] pb-8 pt-20 md:h-[100svh] md:min-h-0 md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="flex w-full max-w-full justify-center md:overflow-visible">
+      <div className="flex w-full justify-center overflow-x-clip md:overflow-visible">
         <div
           ref={stageRef}
-          className="relative aspect-[2/1] w-full max-w-full shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[2/1] w-[150vw] max-w-none shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -383,7 +383,7 @@ export function LogoMass() {
         </div>
       </div>
 
-      <p className="relative z-10 mt-4 max-w-sm px-1 text-center md:mt-3 md:px-6">
+      <p className="relative z-10 mt-4 max-w-sm px-5 text-center md:mt-3 md:px-6">
         <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
           AYV WRLD
         </span>

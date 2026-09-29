@@ -1,6 +1,9 @@
+import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
 import { work } from "@/lib/site";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function CaseStudies() {
   const study = work.dili;
@@ -36,20 +39,15 @@ export function CaseStudies() {
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/20" />
                   <span className="ml-2 truncate text-[11px] text-paper/40">dilipaints.be</span>
                 </div>
-                {/* PLACEHOLDER: swap this block for a real screenshot of https://dilipaints.be/
-                    Example:
-                    <Image src="/work/dili-paints.png" alt="Dili Paints homepage" width={1440} height={900} className="h-auto w-full" />
-                */}
-                <div className="flex aspect-[16/10] items-end bg-[linear-gradient(165deg,#1a1a1a_0%,#101010_70%)] p-5 sm:p-8">
-                  <div className="min-w-0">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-paper/40">
-                      Screenshot
-                    </p>
-                    <p className="mt-3 font-display text-2xl font-semibold tracking-display sm:text-4xl">
-                      Dili Paints
-                    </p>
-                    <p className="mt-2 text-sm text-paper/50">Kleur met klasse</p>
-                  </div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#111111]">
+                  <Image
+                    src={`${basePath}/previews/dili-home.jpg`}
+                    alt="Dili Paints homepage"
+                    fill
+                    unoptimized
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                  />
                 </div>
               </div>
             </div>
