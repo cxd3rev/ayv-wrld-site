@@ -73,7 +73,7 @@ export function About() {
                   type="text"
                   required
                   autoComplete="name"
-                  className="h-11 w-full rounded-lg border border-white/20 bg-ink px-3 text-sm text-paper outline-none focus:border-white/40"
+                  className="h-12 w-full rounded-lg border border-white/20 bg-ink px-3 text-base text-paper outline-none focus:border-white/40"
                 />
               </label>
               <label className="block">
@@ -83,7 +83,7 @@ export function About() {
                   type="email"
                   required
                   autoComplete="email"
-                  className="h-11 w-full rounded-lg border border-white/20 bg-ink px-3 text-sm text-paper outline-none focus:border-white/40"
+                  className="h-12 w-full rounded-lg border border-white/20 bg-ink px-3 text-base text-paper outline-none focus:border-white/40"
                 />
               </label>
               <label className="block">
@@ -92,7 +92,7 @@ export function About() {
                   name="message"
                   required
                   rows={5}
-                  className="w-full resize-y rounded-lg border border-white/20 bg-ink px-3 py-3 text-sm text-paper outline-none focus:border-white/40"
+                  className="w-full resize-y rounded-lg border border-white/20 bg-ink px-3 py-3 text-base text-paper outline-none focus:border-white/40"
                 />
               </label>
             </div>

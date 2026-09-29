@@ -9,7 +9,7 @@ export function Hero() {
       <LogoMass />
       <section aria-labelledby="studio-title" className="relative py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="shell">
-          <div className="flex flex-col gap-6 sm:gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+          <div className="flex items-end justify-between gap-4 sm:gap-8 lg:items-center lg:gap-16">
             <Reveal className="min-w-0 flex-1">
               <p className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/60">
                 <span aria-hidden className="inline-block h-2 w-2 shrink-0 bg-navy" />
@@ -17,7 +17,7 @@ export function Hero() {
               </p>
               <h1
                 id="studio-title"
-                className="mt-6 max-w-[11ch] font-display text-[2.75rem] font-bold leading-[0.9] tracking-display sm:mt-8 sm:text-7xl sm:leading-[0.88] lg:text-8xl"
+                className="mt-5 max-w-[11ch] font-display text-[2.5rem] font-bold leading-[0.9] tracking-display sm:mt-8 sm:text-7xl sm:leading-[0.88] lg:text-8xl"
               >
                 {hero.title.map((line) => (
                   <span key={line} className="block">
@@ -26,7 +26,7 @@ export function Hero() {
                 ))}
               </h1>
             </Reveal>
-            <div className="h-20 w-20 shrink-0 self-start sm:h-32 sm:w-32 sm:self-end lg:h-48 lg:w-48 lg:self-center">
+            <div className="mb-1 h-16 w-16 shrink-0 sm:mb-2 sm:h-28 sm:w-28 lg:mb-0 lg:h-48 lg:w-48">
               <Logo brand="ayvwrld" className="h-full w-full" />
             </div>
           </div>

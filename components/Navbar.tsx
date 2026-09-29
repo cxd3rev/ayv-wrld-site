@@ -100,7 +100,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-1 overflow-y-auto overscroll-contain bg-ink px-5 pb-10 pt-6 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-1 overflow-y-auto overscroll-contain bg-ink px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:hidden"
           >
             {navLinks.map((link) => (
               <a

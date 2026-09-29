@@ -31,7 +31,7 @@ export function Products() {
           <Reveal className="lg:col-span-2">
             <article
               id="automation-pack"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-10 lg:min-h-[420px] lg:p-14"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-10 md:hover:-translate-y-1 lg:min-h-[420px] lg:p-14"
             >
               <div
                 aria-hidden
@@ -39,11 +39,11 @@ export function Products() {
               >
                 <Logo brand="ayvstack" decorative className="h-auto w-full" />
               </div>
-              <div className="relative flex h-full flex-col justify-between gap-12">
+              <div className="relative flex h-full flex-col justify-between gap-8 sm:gap-12">
                 <div>
-                  <span aria-hidden className="mb-8 inline-block h-2 w-2 bg-navy" />
-                  <Logo brand="ayvstack" className="h-16 w-16 sm:h-20 sm:w-20" />
-                  <p className="mt-10 text-[11px] uppercase tracking-[0.2em] text-paper/50">
+                  <span aria-hidden className="mb-5 inline-block h-2 w-2 bg-navy sm:mb-8" />
+                  <Logo brand="ayvstack" className="h-14 w-14 sm:h-20 sm:w-20" />
+                  <p className="mt-6 text-[11px] uppercase tracking-[0.2em] text-paper/50 sm:mt-10">
                     Primary product
                   </p>
                   <h3 className="mt-3 max-w-xl break-words font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:text-5xl sm:leading-[0.95] lg:text-6xl">
@@ -68,7 +68,7 @@ export function Products() {
               <Reveal key={product.id} delay={index * 0.06} className="h-full">
                 <article
                   id={product.id}
-                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-8 ${
+                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-8 md:hover:-translate-y-1 ${
                     href ? "" : "opacity-80 hover:opacity-100"
                   }`}
                 >

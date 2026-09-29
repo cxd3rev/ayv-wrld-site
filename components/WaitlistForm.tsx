@@ -32,11 +32,11 @@ export function WaitlistForm({ product }: { product: string }) {
         required
         autoComplete="email"
         placeholder="Email address"
-        className="h-11 w-full min-w-0 rounded-full border border-white/20 bg-ink px-4 text-sm text-paper outline-none placeholder:text-paper/45 focus:border-white/40"
+        className="h-12 w-full min-w-0 rounded-full border border-white/20 bg-ink px-4 text-base text-paper outline-none placeholder:text-paper/45 focus:border-white/40"
       />
       <button
         type="submit"
-        className="relative inline-flex h-11 w-full shrink-0 items-center justify-center rounded-full border border-white/15 px-4 text-sm text-paper transition duration-300 hover:border-navy sm:w-auto"
+        className="relative inline-flex h-12 w-full shrink-0 items-center justify-center rounded-full border border-white/15 px-4 text-sm text-paper transition duration-300 hover:border-navy sm:w-auto"
       >
         Join the waitlist
         <span
