@@ -40,12 +40,20 @@ export function About() {
           <p className="mt-6 max-w-md text-base leading-relaxed text-paper/75 md:text-lg">
             {about.bio}
           </p>
-          <a
-            href={`mailto:${links.email}`}
-            className="mt-8 inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
-          >
-            {links.email}
-          </a>
+          <div className="mt-8 flex flex-col gap-2">
+            <a
+              href={`mailto:${links.email}`}
+              className="inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
+            >
+              {links.email}
+            </a>
+            <a
+              href={`tel:${links.phoneTel}`}
+              className="inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
+            >
+              {links.phone}
+            </a>
+          </div>
         </Reveal>
 
         <Reveal delay={0.08} className="min-w-0">

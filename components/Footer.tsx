@@ -76,6 +76,21 @@ export function Footer() {
           ))}
         </ul>
 
+        <p className="mt-8 flex flex-col gap-1 text-sm text-paper/60 sm:mt-10 sm:flex-row sm:gap-6">
+          <a
+            href={`mailto:${links.email}`}
+            className="transition-colors duration-300 hover:text-paper"
+          >
+            {links.email}
+          </a>
+          <a
+            href={`tel:${links.phoneTel}`}
+            className="transition-colors duration-300 hover:text-paper"
+          >
+            {links.phone}
+          </a>
+        </p>
+
         <p className="mt-10 text-xs text-paper/40 sm:mt-12">© {year} AYV WRLD</p>
       </div>
     </footer>

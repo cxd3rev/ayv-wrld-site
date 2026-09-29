@@ -9,8 +9,9 @@ export const links = {
   course: "#course",
   diliPaints: "https://dilipaints.be/",
   rated: "https://rated-ivory.vercel.app/",
-  // PLACEHOLDER: replace with your public email address.
-  email: "hello@ayvwrld.com",
+  email: "info@ayvwrld.com",
+  phone: "0468 56 33 64",
+  phoneTel: "+32468563364",
   // PLACEHOLDER: replace with your real social profile URLs.
   x: "#",
   instagram: "#",
