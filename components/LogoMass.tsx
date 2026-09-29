@@ -9,7 +9,7 @@ import {
   type MutableRefObject,
   type PointerEvent as ReactPointerEvent,
 } from "react";
-import { hubLogos, type HubLogo } from "@/lib/hub-projects";
+import { hubLogos, placeLogo, type HubLogo, type PlacedLogo } from "@/lib/hub-projects";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ALPHA_SIZE = 256;
@@ -29,8 +29,9 @@ function isNavigable(item: HubLogo) {
   return !item.centre && item.status === "live" && Boolean(item.href);
 }
 
-function hoverScale(item: HubLogo) {
+function hoverScale(item: PlacedLogo, mobile: boolean) {
   if (item.id === "ayvwrld") return 1.05;
+  if (mobile) return item.w < 30 ? 1.45 : 1.2;
   if (item.w < 12) return 1.45;
   return 1.2;
 }
@@ -47,9 +48,15 @@ function anchorProps(href: string) {
   return isExternal(href) ? { target: "_blank" as const, rel: "noopener noreferrer" } : {};
 }
 
-function pushFor(item: HubLogo, active: HubLogo | undefined, stageW: number, stageH: number) {
+function pushFor(
+  item: PlacedLogo,
+  active: PlacedLogo | undefined,
+  stageW: number,
+  stageH: number,
+  mobile: boolean,
+) {
   if (!active || stageW <= 0) return { x: 0, y: 0, scale: 1 };
-  if (item.id === active.id) return { x: 0, y: 0, scale: hoverScale(item) };
+  if (item.id === active.id) return { x: 0, y: 0, scale: hoverScale(item, mobile) };
   const dx = ((item.x - active.x) / 100) * stageW;
   const dy = ((item.y - active.y) / 100) * stageH;
   const dist = Math.hypot(dx, dy) || 1;
@@ -58,8 +65,8 @@ function pushFor(item: HubLogo, active: HubLogo | undefined, stageW: number, sta
   return { x: (dx / dist) * mag, y: (dy / dist) * mag, scale: 0.97 };
 }
 
-function labelStyle(item: HubLogo) {
-  const reach = item.w * hoverScale(item) * 0.66;
+function labelStyle(item: PlacedLogo, mobile: boolean) {
+  const reach = item.w * hoverScale(item, mobile) * 0.66;
   let above = item.y + reach > 88;
   if (item.y - reach < 8) above = false;
   const anchor = Math.min(94, Math.max(6, above ? item.y - reach : item.y + reach));
@@ -115,6 +122,7 @@ function hitTest(
   clientX: number,
   clientY: number,
   stage: HTMLDivElement | null,
+  logos: PlacedLogo[],
   poses: Record<string, Pose>,
   alphas: Record<string, AlphaMap | undefined>,
   frontId: string | null,
@@ -124,7 +132,7 @@ function hitTest(
   if (rect.width <= 0 || rect.height <= 0) return null;
   const px = clientX - rect.left;
   const py = clientY - rect.top;
-  const ranked = hubLogos
+  const ranked = logos
     .map((item, index) => ({ item, index, z: item.id === frontId ? 100 : item.z }))
     .sort((a, b) => b.z - a.z || b.index - a.index);
 
@@ -174,15 +182,25 @@ export function LogoMass() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [pinnedId, setPinnedId] = useState<string | null>(null);
   const [focusedId, setFocusedId] = useState<string | null>(null);
+  const [mobile, setMobile] = useState(false);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [driftOn, setDriftOn] = useState(false);
   const [debugSrc, setDebugSrc] = useState<string | null>(null);
 
+  const logos = hubLogos.map((item) => placeLogo(item, mobile));
   const activeId = hoveredId ?? focusedId ?? pinnedId;
-  const active = hubLogos.find((item) => item.id === activeId);
+  const active = logos.find((item) => item.id === activeId);
   frontRef.current = activeId;
   reduceRef.current = reduce === true;
-  const pointerItem = hubLogos.find((item) => item.id === hoveredId);
+  const pointerItem = logos.find((item) => item.id === hoveredId);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const apply = () => setMobile(media.matches);
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
 
   useEffect(() => {
     setDriftOn(reduce === false);
@@ -213,12 +231,15 @@ export function LogoMass() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("debug") !== "1") return;
-    const src = `${basePath}/reference/ayvwrld-collection.png`;
+    const file = mobile
+      ? "ayvwrld-collection-mobile.png"
+      : "ayvwrld-collection.png";
+    const src = `${basePath}/reference/${file}`;
     const image = new window.Image();
     image.onload = () => setDebugSrc(src);
     image.onerror = () => setDebugSrc(null);
     image.src = src;
-  }, []);
+  }, [mobile]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -260,9 +281,9 @@ export function LogoMass() {
   };
 
   const pick = (clientX: number, clientY: number) =>
-    hitTest(clientX, clientY, stageRef.current, poses.current, alphas.current, frontRef.current);
+    hitTest(clientX, clientY, stageRef.current, logos, poses.current, alphas.current, frontRef.current);
 
-  const activate = (item: HubLogo | null, fromTouch: boolean) => {
+  const activate = (item: PlacedLogo | null, fromTouch: boolean) => {
     if (!item) {
       pinnedRef.current = null;
       setPinnedId(null);
@@ -299,10 +320,10 @@ export function LogoMass() {
       aria-label="AYV WRLD"
       className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="relative w-full overflow-x-clip [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)] md:overflow-visible md:[mask-image:none]">
+      <div className="relative flex w-full justify-center">
         <div
           ref={stageRef}
-          className="relative left-1/2 aspect-[2/1] w-[210vw] max-w-none -translate-x-1/2 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[9/16] w-[min(100%,calc((100svh-5.5rem)*9/16))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -330,12 +351,12 @@ export function LogoMass() {
             }}
           />
 
-          {hubLogos.map((item, index) => (
+          {logos.map((item, index) => (
             <LogoNode
               key={item.id}
               item={item}
               index={index}
-              push={pushFor(item, active, box.w, box.h)}
+              push={pushFor(item, active, box.w, box.h, mobile)}
               hot={item.id === activeId}
               drift={driftOn}
               spring={spring}
@@ -348,7 +369,7 @@ export function LogoMass() {
             <div
               data-logo-label={active.id}
               className="pointer-events-auto absolute z-50 w-max max-w-[min(11.5rem,calc(100%-1.5rem))] rounded-xl border border-white/15 bg-white/10 px-3 py-2 shadow-[0_10px_28px_rgba(0,0,0,0.35)] backdrop-blur-md"
-              style={labelStyle(active)}
+              style={labelStyle(active, mobile)}
               onPointerEnter={() => pointAt(active.id)}
               onPointerUp={(event) => event.stopPropagation()}
               onClick={(event) => event.stopPropagation()}
@@ -409,7 +430,7 @@ function LogoNode({
   poses,
   onFocus,
 }: {
-  item: HubLogo;
+  item: PlacedLogo;
   index: number;
   push: { x: number; y: number; scale: number };
   hot: boolean;
@@ -435,14 +456,15 @@ function LogoNode({
   };
 
   return (
-    <div
+    <motion.div
       className="pointer-events-none absolute aspect-square"
+      initial={false}
+      animate={{ left: `${item.x}%`, top: `${item.y}%`, width: `${item.w}%` }}
+      transition={spring}
       style={{
-        left: `${item.x}%`,
-        top: `${item.y}%`,
-        width: `${item.w}%`,
         zIndex: hot ? 40 : item.z,
-        transform: "translate(-50%, -50%)",
+        x: "-50%",
+        y: "-50%",
       }}
     >
       <motion.div
@@ -476,7 +498,12 @@ function LogoNode({
             patch({ x: num(latest.x, 0), y: num(latest.y, 0), scale: num(latest.scale, 1) || 1 })
           }
         >
-          <div className="pointer-events-none h-full w-full" style={{ transform: `rotate(${item.rot}deg)` }}>
+          <motion.div
+            className="pointer-events-none h-full w-full"
+            initial={false}
+            animate={{ rotate: item.rot }}
+            transition={spring}
+          >
             <Image
               src={logoSrc(item.file)}
               alt=""
@@ -488,7 +515,7 @@ function LogoNode({
               sizes="(max-width: 768px) 50vw, 36vw"
               className="pointer-events-none h-full w-full select-none"
             />
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
 
@@ -520,6 +547,6 @@ function LogoNode({
           {...focusProps}
         />
       )}
-    </div>
+    </motion.div>
   );
 }

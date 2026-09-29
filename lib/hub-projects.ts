@@ -3,11 +3,19 @@
  * of the stage. w is the file width as a percentage of stage width. rot is
  * clockwise degrees.
  *
- * public/reference/ayvwrld-collection.png was not in the repo or the local
- * assets folder. These numbers are the supplied coordinate table.
+ * desktop matches the supplied desktop coordinate table.
+ * mobile matches public/reference/ayvwrld-collection-mobile.png: a tall stack,
+ * not a scaled copy of the desktop banner.
  *
  * Search this file for "PLACEHOLDER" and "TODO" and edit those lines.
  */
+
+export type HubLayout = {
+  x: number;
+  y: number;
+  w: number;
+  rot: number;
+};
 
 export type HubLogo = {
   id: string;
@@ -15,11 +23,9 @@ export type HubLogo = {
   name: string;
   description: string;
   status: "live" | "soon";
-  x: number;
-  y: number;
-  w: number;
-  rot: number;
   z: number;
+  desktop: HubLayout;
+  mobile: HubLayout;
   /**
    * Live destination. http(s) opens in a new tab. A hash stays in the same tab.
    * Omit for the centre mark, "soon" items, and anything without a real URL.
@@ -28,6 +34,8 @@ export type HubLogo = {
   /** Centre brand. Click smooth-scrolls to the top. Not a link. */
   centre?: boolean;
 };
+
+export type PlacedLogo = HubLogo & HubLayout;
 
 export const AUTOMATION_STACK_URL = "https://www.ayvautomation.space";
 
@@ -41,6 +49,10 @@ function moduleHref(slug: string) {
   return `${AUTOMATION_STACK_URL}/automation/${slug}`;
 }
 
+export function placeLogo(item: HubLogo, mobile: boolean): PlacedLogo {
+  return { ...item, ...(mobile ? item.mobile : item.desktop) };
+}
+
 export const hubLogos: HubLogo[] = [
   {
     id: "ayvwrld",
@@ -50,11 +62,9 @@ export const hubLogos: HubLogo[] = [
     description: "The studio mark.",
     status: "live",
     centre: true,
-    x: 50.48,
-    y: 41.66,
-    w: 43.16,
-    rot: 0,
     z: 1,
+    desktop: { x: 50.48, y: 41.66, w: 43.16, rot: 0 },
+    mobile: { x: 50, y: 18, w: 78, rot: 0 },
   },
   {
     id: "rated",
@@ -64,11 +74,9 @@ export const hubLogos: HubLogo[] = [
     description: "Rate and rank your favorite hip-hop albums.",
     status: "live",
     href: "https://rated-ivory.vercel.app/",
-    x: 67.05,
-    y: 58.0,
-    w: 21.99,
-    rot: 0,
     z: 2,
+    desktop: { x: 67.05, y: 58.0, w: 21.99, rot: 0 },
+    mobile: { x: 76, y: 52, w: 38, rot: 0 },
   },
   {
     id: "oma",
@@ -79,11 +87,9 @@ export const hubLogos: HubLogo[] = [
     status: "live",
     // TODO: replace this temporary #course link with OMA_SITE_URL.
     href: OMA_SITE_URL || "#course",
-    x: 51.73,
-    y: 76.1,
-    w: 22.47,
-    rot: 0,
     z: 3,
+    desktop: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
+    mobile: { x: 30, y: 46, w: 42, rot: -10 },
   },
   {
     id: "ayvstack",
@@ -93,11 +99,9 @@ export const hubLogos: HubLogo[] = [
     description: "Tools for leads, bookings, quotes, and reviews.",
     status: "live",
     href: AUTOMATION_STACK_URL,
-    x: 32.2,
-    y: 65.62,
-    w: 19.46,
-    rot: 0,
     z: 2,
+    desktop: { x: 32.2, y: 65.62, w: 19.46, rot: 0 },
+    mobile: { x: 68, y: 68, w: 32, rot: -8 },
   },
   {
     id: "dilipaints",
@@ -107,11 +111,9 @@ export const hubLogos: HubLogo[] = [
     description: "A website for a Belgian painting company.",
     status: "live",
     href: "https://dilipaints.be/",
-    x: 62.85,
-    y: 80.73,
-    w: 10.83,
-    rot: 20,
     z: 4,
+    desktop: { x: 62.85, y: 80.73, w: 10.83, rot: 20 },
+    mobile: { x: 88, y: 90, w: 26, rot: 12 },
   },
   {
     id: "kleuro",
@@ -120,11 +122,9 @@ export const hubLogos: HubLogo[] = [
     // PLACEHOLDER: Kleuro description.
     description: "Photograph a room and preview it in new colors.",
     status: "soon",
-    x: 70.67,
-    y: 34.16,
-    w: 10.88,
-    rot: 20,
     z: 4,
+    desktop: { x: 70.67, y: 34.16, w: 10.88, rot: 20 },
+    mobile: { x: 72, y: 84, w: 28, rot: 16 },
   },
   {
     id: "avyro",
@@ -134,11 +134,9 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("avyro"),
-    x: 42.87,
-    y: 66.78,
-    w: 11.61,
-    rot: -100,
     z: 3,
+    desktop: { x: 42.87, y: 66.78, w: 11.61, rot: -100 },
+    mobile: { x: 24, y: 60, w: 30, rot: 8 },
   },
   {
     id: "velto",
@@ -148,11 +146,9 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("velto"),
-    x: 38.88,
-    y: 56.92,
-    w: 10.93,
-    rot: -20,
     z: 3,
+    desktop: { x: 38.88, y: 56.92, w: 10.93, rot: -20 },
+    mobile: { x: 46, y: 82, w: 30, rot: 6 },
   },
   {
     id: "rovyn",
@@ -162,11 +158,9 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("rovyn"),
-    x: 26.88,
-    y: 52.62,
-    w: 9.89,
-    rot: 20,
     z: 3,
+    desktop: { x: 26.88, y: 52.62, w: 9.89, rot: 20 },
+    mobile: { x: 14, y: 34, w: 28, rot: -18 },
   },
   {
     id: "orvyn",
@@ -176,11 +170,9 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("orvyn"),
-    x: 32.68,
-    y: 44.68,
-    w: 11.51,
-    rot: 0,
     z: 3,
+    desktop: { x: 32.68, y: 44.68, w: 11.51, rot: 0 },
+    mobile: { x: 52, y: 58, w: 20, rot: 0 },
   },
   {
     id: "nexro",
@@ -190,11 +182,9 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("nexro"),
-    x: 39.71,
-    y: 81.92,
-    w: 9.59,
-    rot: 0,
     z: 3,
+    desktop: { x: 39.71, y: 81.92, w: 9.59, rot: 0 },
+    mobile: { x: 84, y: 32, w: 30, rot: 14 },
   },
   {
     id: "ravelo",
@@ -204,10 +194,8 @@ export const hubLogos: HubLogo[] = [
     description: "Part of the AYV Automation Stack.",
     status: "live",
     href: moduleHref("ravelo"),
-    x: 22.49,
-    y: 65.87,
-    w: 11.86,
-    rot: 0,
     z: 3,
+    desktop: { x: 22.49, y: 65.87, w: 11.86, rot: 0 },
+    mobile: { x: 18, y: 78, w: 34, rot: -6 },
   },
 ];
