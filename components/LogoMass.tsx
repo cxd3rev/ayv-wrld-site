@@ -4,6 +4,7 @@ import { motion, useReducedMotion, type Transition } from "framer-motion";
 import Image from "next/image";
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type MutableRefObject,
@@ -194,7 +195,7 @@ export function LogoMass() {
   reduceRef.current = reduce === true;
   const pointerItem = logos.find((item) => item.id === hoveredId);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
     const apply = () => setMobile(media.matches);
     apply();
@@ -231,14 +232,22 @@ export function LogoMass() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("debug") !== "1") return;
+    let cancelled = false;
     const file = mobile
       ? "ayvwrld-collection-mobile.png"
       : "ayvwrld-collection.png";
     const src = `${basePath}/reference/${file}`;
     const image = new window.Image();
-    image.onload = () => setDebugSrc(src);
-    image.onerror = () => setDebugSrc(null);
+    image.onload = () => {
+      if (!cancelled) setDebugSrc(src);
+    };
+    image.onerror = () => {
+      if (!cancelled) setDebugSrc(null);
+    };
     image.src = src;
+    return () => {
+      cancelled = true;
+    };
   }, [mobile]);
 
   useEffect(() => {
@@ -459,8 +468,6 @@ function LogoNode({
     <motion.div
       className="pointer-events-none absolute aspect-square"
       initial={false}
-      animate={{ left: `${item.x}%`, top: `${item.y}%`, width: `${item.w}%` }}
-      transition={spring}
       style={{
         position: "absolute",
         zIndex: hot ? 40 : item.z,
