@@ -17,21 +17,21 @@ function SectionLabel({ index, label }: { index: string; label: string }) {
 
 export function Products() {
   return (
-    <section id="products" className="relative overflow-hidden py-24 md:py-32 lg:py-40">
+    <section id="products" className="relative overflow-hidden py-16 sm:py-24 md:py-32 lg:py-40">
       <Texture />
       <div className="shell relative z-10">
         <Reveal>
           <SectionLabel index="02" label="Products" />
-          <h2 className="max-w-3xl font-display text-4xl font-bold leading-[0.92] tracking-display sm:text-6xl lg:text-7xl">
+          <h2 className="max-w-3xl font-display text-[2.25rem] font-bold leading-[0.95] tracking-display sm:text-6xl sm:leading-[0.92] lg:text-7xl">
             {products.title}
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 lg:grid-cols-2 lg:gap-5">
+        <div className="mt-10 grid gap-4 sm:mt-12 lg:grid-cols-2 lg:gap-5">
           <Reveal className="lg:col-span-2">
             <article
               id="automation-pack"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-7 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-10 lg:min-h-[420px] lg:p-14"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-10 lg:min-h-[420px] lg:p-14"
             >
               <div
                 aria-hidden
@@ -46,7 +46,7 @@ export function Products() {
                   <p className="mt-10 text-[11px] uppercase tracking-[0.2em] text-paper/50">
                     Primary product
                   </p>
-                  <h3 className="mt-3 max-w-xl font-display text-4xl font-bold leading-[0.95] tracking-display sm:text-5xl lg:text-6xl">
+                  <h3 className="mt-3 max-w-xl break-words font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:text-5xl sm:leading-[0.95] lg:text-6xl">
                     {products.featured.name}
                   </h3>
                   <p className="mt-5 max-w-lg text-base leading-relaxed text-paper/70 md:text-lg">
@@ -68,21 +68,21 @@ export function Products() {
               <Reveal key={product.id} delay={index * 0.06} className="h-full">
                 <article
                   id={product.id}
-                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-7 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-8 ${
+                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-white/20 sm:p-8 ${
                     href ? "" : "opacity-80 hover:opacity-100"
                   }`}
                 >
                   {href ? null : (
-                    <span className="absolute right-5 top-5 rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-paper/70">
+                    <span className="absolute right-4 top-4 rounded-full border border-white/15 px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-paper/70 sm:right-5 sm:top-5">
                       Coming soon
                     </span>
                   )}
                   {product.brand ? (
-                    <Logo brand={product.brand} className="h-14 w-14" />
+                    <Logo brand={product.brand} className="h-12 w-12 sm:h-14 sm:w-14" />
                   ) : null}
                   <h3
-                    className={`font-display text-3xl font-bold tracking-display ${
-                      product.brand ? "mt-8" : "mt-1 pr-28"
+                    className={`font-display text-[1.75rem] font-bold tracking-display sm:text-3xl ${
+                      product.brand ? "mt-6 sm:mt-8" : "mt-1 pr-24 sm:pr-28"
                     }`}
                   >
                     {product.name}

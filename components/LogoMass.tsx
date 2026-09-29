@@ -62,10 +62,12 @@ function labelStyle(item: HubLogo) {
   const reach = item.w * hoverScale(item) * 0.66;
   let above = item.y + reach > 88;
   if (item.y - reach < 8) above = false;
-  const anchor = Math.min(96, Math.max(4, above ? item.y - reach : item.y + reach));
-  const shift = item.x > 66 ? "-92%" : item.x < 28 ? "-8%" : "-50%";
+  const anchor = Math.min(94, Math.max(6, above ? item.y - reach : item.y + reach));
+  // Keep the chip inside the stage on narrow screens; desktop composition is unchanged.
+  const left = Math.min(86, Math.max(14, item.x));
+  const shift = left > 66 ? "-92%" : left < 28 ? "-8%" : "-50%";
   return {
-    left: `${item.x}%`,
+    left: `${left}%`,
     top: `${anchor}%`,
     transform: `translate(${shift}, ${above ? "-100%" : "0%"})`,
   };
@@ -295,12 +297,12 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex h-[100svh] flex-col items-center justify-center overflow-hidden bg-[#0A0A0A] pt-16 md:overflow-visible md:pt-[4.5rem]"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center bg-[#0A0A0A] px-5 pb-8 pt-20 md:h-[100svh] md:min-h-0 md:overflow-visible md:px-0 md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="flex w-full justify-center overflow-hidden md:overflow-visible">
+      <div className="flex w-full max-w-full justify-center md:overflow-visible">
         <div
           ref={stageRef}
-          className="relative aspect-[2/1] w-[170vw] shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[2/1] w-full max-w-full shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -345,7 +347,7 @@ export function LogoMass() {
           {active ? (
             <div
               data-logo-label={active.id}
-              className="pointer-events-auto absolute z-50 w-max max-w-[11.5rem] rounded-xl border border-white/15 bg-white/10 px-3 py-2 shadow-[0_10px_28px_rgba(0,0,0,0.35)] backdrop-blur-md"
+              className="pointer-events-auto absolute z-50 w-max max-w-[min(11.5rem,calc(100%-1.5rem))] rounded-xl border border-white/15 bg-white/10 px-3 py-2 shadow-[0_10px_28px_rgba(0,0,0,0.35)] backdrop-blur-md"
               style={labelStyle(active)}
               onPointerEnter={() => pointAt(active.id)}
               onPointerUp={(event) => event.stopPropagation()}
@@ -360,7 +362,7 @@ export function LogoMass() {
                 <a
                   href={active.href}
                   {...anchorProps(active.href)}
-                  className="mt-2 inline-flex h-7 items-center rounded-full bg-paper px-3 text-[11px] font-medium text-ink"
+                  className="mt-2 inline-flex h-9 min-h-[44px] items-center rounded-full bg-paper px-4 text-[11px] font-medium text-ink md:h-7 md:min-h-0 md:px-3"
                 >
                   Open
                 </a>
@@ -381,7 +383,7 @@ export function LogoMass() {
         </div>
       </div>
 
-      <p className="relative z-10 mt-3 px-6 text-center">
+      <p className="relative z-10 mt-4 max-w-sm px-1 text-center md:mt-3 md:px-6">
         <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
           AYV WRLD
         </span>

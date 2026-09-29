@@ -20,7 +20,7 @@ export function WaitlistForm({ product }: { product: string }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="mt-8 flex flex-col gap-2 sm:flex-row"
+      className="mt-8 flex w-full min-w-0 flex-col gap-2 sm:flex-row"
     >
       <label htmlFor={fieldId} className="sr-only">
         Email for the {product} waitlist
@@ -32,11 +32,11 @@ export function WaitlistForm({ product }: { product: string }) {
         required
         autoComplete="email"
         placeholder="Email address"
-        className="h-11 w-full rounded-full border border-white/20 bg-ink px-4 text-sm text-paper outline-none placeholder:text-paper/45 focus:border-white/40"
+        className="h-11 w-full min-w-0 rounded-full border border-white/20 bg-ink px-4 text-sm text-paper outline-none placeholder:text-paper/45 focus:border-white/40"
       />
       <button
         type="submit"
-        className="relative inline-flex h-11 shrink-0 items-center justify-center rounded-full border border-white/15 px-4 text-sm text-paper transition duration-300 hover:border-navy"
+        className="relative inline-flex h-11 w-full shrink-0 items-center justify-center rounded-full border border-white/15 px-4 text-sm text-paper transition duration-300 hover:border-navy sm:w-auto"
       >
         Join the waitlist
         <span

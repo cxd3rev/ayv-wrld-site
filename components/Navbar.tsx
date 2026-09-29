@@ -40,14 +40,14 @@ export function Navbar() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="shell flex h-16 items-center justify-between md:h-[4.5rem]">
+      <div className="shell flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
         <a
           href="#main"
           onClick={() => setOpen(false)}
-          className="flex items-center gap-2.5"
+          className="flex min-w-0 items-center gap-2.5"
         >
-          <Logo brand="ayvwrld" priority className="h-8 w-8" />
-          <span className="font-display text-[13px] font-semibold tracking-[0.18em]">
+          <Logo brand="ayvwrld" priority className="h-8 w-8 shrink-0" />
+          <span className="truncate font-display text-[13px] font-semibold tracking-[0.18em]">
             AYV WRLD
           </span>
         </a>
@@ -72,20 +72,20 @@ export function Navbar() {
 
         <button
           type="button"
-          className="relative h-10 w-10 md:hidden"
+          className="relative -mr-1 flex h-11 w-11 shrink-0 items-center justify-center md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <span
-            className={`absolute left-2 right-2 h-px bg-paper transition duration-300 ${
-              open ? "top-1/2 rotate-45" : "top-[14px]"
+            className={`absolute left-2.5 right-2.5 h-px bg-paper transition duration-300 ${
+              open ? "top-1/2 rotate-45" : "top-[15px]"
             }`}
           />
           <span
-            className={`absolute left-2 right-2 h-px bg-paper transition duration-300 ${
-              open ? "top-1/2 -rotate-45" : "top-[24px]"
+            className={`absolute left-2.5 right-2.5 h-px bg-paper transition duration-300 ${
+              open ? "top-1/2 -rotate-45" : "top-[25px]"
             }`}
           />
         </button>
@@ -100,14 +100,14 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-2 bg-ink px-5 py-8 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-1 overflow-y-auto overscroll-contain bg-ink px-5 pb-10 pt-6 md:hidden"
           >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-white/10 py-4 font-display text-4xl font-semibold tracking-display"
+                className="border-b border-white/10 py-4 font-display text-3xl font-semibold tracking-display sm:text-4xl"
               >
                 {link.label}
               </a>
@@ -115,7 +115,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-navy text-sm font-medium text-paper"
+              className="mt-6 inline-flex h-12 min-h-[48px] w-full items-center justify-center rounded-full bg-navy text-sm font-medium text-paper"
             >
               Get in touch
             </a>

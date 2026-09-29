@@ -39,20 +39,20 @@ export function Footer() {
 
   return (
     <footer className="border-t border-white/10">
-      <div className="shell py-14 md:py-16">
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-          <a href="#main" className="flex items-center gap-3">
-            <Logo brand="ayvwrld" className="h-9 w-9" />
+      <div className="shell py-12 sm:py-14 md:py-16">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+          <a href="#main" className="flex min-w-0 items-center gap-3">
+            <Logo brand="ayvwrld" className="h-9 w-9 shrink-0" />
             <span className="font-display text-sm font-semibold tracking-[0.18em]">
               AYV WRLD
             </span>
           </a>
-          <ul className="flex gap-4">
+          <ul className="flex gap-3 sm:gap-4">
             {socials.map((item) => (
               <li key={item.label}>
                 <SafeLink
                   href={item.href}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-paper/70 transition duration-300 hover:scale-105 hover:text-paper"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-paper/70 transition duration-300 hover:scale-105 hover:text-paper"
                   aria-label={item.label}
                 >
                   {item.icon}
@@ -62,13 +62,13 @@ export function Footer() {
           </ul>
         </div>
 
-        <ul className="mt-12 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
+        <ul className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
           {footerLinks.map((link) => (
-            <li key={link.label}>
+            <li key={link.label} className="min-w-0">
               <SafeLink
                 href={link.href}
                 external={"external" in link ? link.external : false}
-                className="text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
+                className="break-words text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
               >
                 {link.label}
               </SafeLink>
@@ -76,7 +76,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <p className="mt-12 text-xs text-paper/40">© {year} AYV WRLD</p>
+        <p className="mt-10 text-xs text-paper/40 sm:mt-12">© {year} AYV WRLD</p>
       </div>
     </footer>
   );
