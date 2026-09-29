@@ -323,7 +323,7 @@ export function LogoMass() {
       <div className="relative flex w-full justify-center">
         <div
           ref={stageRef}
-          className="relative aspect-[3/4] w-[min(100%,calc((100svh-5.5rem)*3/4))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[9/16] w-[min(100%,calc((100svh-5.5rem)*9/16))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
