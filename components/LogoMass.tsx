@@ -4,7 +4,6 @@ import { motion, useReducedMotion, type Transition } from "framer-motion";
 import Image from "next/image";
 import {
   useEffect,
-  useLayoutEffect,
   useRef,
   useState,
   type MutableRefObject,
@@ -18,7 +17,7 @@ const ALPHA_CUTOFF = 0.3;
 const MAX_PUSH = 0.025;
 
 type Pose = { x: number; y: number; scale: number; driftX: number; driftY: number };
-type AlphaMap = { data: Uint8ClampedArray | null; aspect: number };
+type AlphaMap = { data: Uint8ClampedArray | null };
 
 const restPose = (): Pose => ({ x: 0, y: 0, scale: 1, driftX: 0, driftY: 0 });
 
@@ -104,22 +103,17 @@ function loadAlpha(src: string): Promise<AlphaMap> {
         canvas.height = ALPHA_SIZE;
         const context = canvas.getContext("2d", { willReadFrequently: true });
         if (!context) {
-          resolve({ data: null, aspect: 1 });
+          resolve({ data: null });
           return;
         }
         context.clearRect(0, 0, ALPHA_SIZE, ALPHA_SIZE);
         context.drawImage(image, 0, 0, ALPHA_SIZE, ALPHA_SIZE);
-        const aspect =
-          image.naturalWidth > 0 ? image.naturalHeight / image.naturalWidth : 1;
-        resolve({
-          data: context.getImageData(0, 0, ALPHA_SIZE, ALPHA_SIZE).data,
-          aspect,
-        });
+        resolve({ data: context.getImageData(0, 0, ALPHA_SIZE, ALPHA_SIZE).data });
       } catch {
-        resolve({ data: null, aspect: 1 });
+        resolve({ data: null });
       }
     };
-    image.onerror = () => resolve({ data: null, aspect: 1 });
+    image.onerror = () => resolve({ data: null });
     image.src = src;
   });
 }
@@ -147,9 +141,8 @@ function hitTest(
     const scale = pose.scale || 1;
     const cx = (item.x / 100) * rect.width + pose.x + pose.driftX;
     const cy = (item.y / 100) * rect.height + pose.y + pose.driftY;
-    const boxW = (item.w / 100) * rect.width * scale;
-    if (boxW <= 0) continue;
-    const boxH = boxW * (alphas[item.id]?.aspect || 1);
+    const size = (item.w / 100) * rect.width * scale;
+    if (size <= 0) continue;
     const sx = px - cx;
     const sy = py - cy;
     const rad = (item.rot * Math.PI) / 180;
@@ -157,14 +150,14 @@ function hitTest(
     const sin = Math.sin(rad);
     const lx = sx * cos + sy * sin;
     const ly = -sx * sin + sy * cos;
-    const u = lx / boxW + 0.5;
-    const v = ly / boxH + 0.5;
+    const u = lx / size + 0.5;
+    const v = ly / size + 0.5;
     const map = alphas[item.id];
     if (!map?.data) {
       if (u < 0 || u > 1 || v < 0 || v > 1) continue;
-      const ox = (u - 0.5) * boxW;
-      const oy = (v - 0.5) * boxH;
-      if (ox * ox + oy * oy <= (boxW * boxW) / 4) return item;
+      const ox = (u - 0.5) * size;
+      const oy = (v - 0.5) * size;
+      if (ox * ox + oy * oy <= (size * size) / 4) return item;
       continue;
     }
     if (u < 0 || v < 0 || u > 1 || v > 1) continue;
@@ -201,7 +194,7 @@ export function LogoMass() {
   reduceRef.current = reduce === true;
   const pointerItem = logos.find((item) => item.id === hoveredId);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
     const apply = () => setMobile(media.matches);
     apply();
@@ -238,22 +231,14 @@ export function LogoMass() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("debug") !== "1") return;
-    let cancelled = false;
     const file = mobile
       ? "ayvwrld-collection-mobile.png"
       : "ayvwrld-collection.png";
     const src = `${basePath}/reference/${file}`;
     const image = new window.Image();
-    image.onload = () => {
-      if (!cancelled) setDebugSrc(src);
-    };
-    image.onerror = () => {
-      if (!cancelled) setDebugSrc(null);
-    };
+    image.onload = () => setDebugSrc(src);
+    image.onerror = () => setDebugSrc(null);
     image.src = src;
-    return () => {
-      cancelled = true;
-    };
   }, [mobile]);
 
   useEffect(() => {
@@ -333,16 +318,13 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative bg-[#0A0A0A] px-0 pb-8 pt-20 md:flex md:h-[100svh] md:flex-col md:items-center md:justify-center md:overflow-visible md:pb-0 md:pt-[4.5rem]"
+      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="relative w-full md:flex md:justify-center">
+      <div className="relative flex w-full justify-center">
         <div
           ref={stageRef}
-          className="relative mx-auto w-[min(100%,calc((100svh-5.5rem)*9/16))] touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
-          style={{
-            aspectRatio: mobile ? "9 / 16" : "2 / 1",
-            cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default",
-          }}
+          className="relative aspect-[3/4] w-[min(100%,calc((100svh-5.5rem)*3/4))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
           onPointerUp={(event) => {
@@ -474,19 +456,23 @@ function LogoNode({
   };
 
   return (
-    <div
-      className="pointer-events-none absolute"
+    <motion.div
+      className="pointer-events-none absolute aspect-square"
+      initial={false}
+      animate={{ left: `${item.x}%`, top: `${item.y}%`, width: `${item.w}%` }}
+      transition={spring}
       style={{
         position: "absolute",
         zIndex: hot ? 40 : item.z,
         left: `${item.x}%`,
         top: `${item.y}%`,
         width: `${item.w}%`,
-        transform: `translate(-50%, -50%) rotate(${item.rot}deg)`,
+        x: "-50%",
+        y: "-50%",
       }}
     >
       <motion.div
-        className="pointer-events-none w-full"
+        className="pointer-events-none h-full w-full"
         initial={false}
         animate={
           drift
@@ -501,7 +487,7 @@ function LogoNode({
         onUpdate={(latest) => patch({ driftX: num(latest.x, 0), driftY: num(latest.y, 0) })}
       >
         <motion.div
-          className="pointer-events-none w-full"
+          className="pointer-events-none h-full w-full"
           initial={false}
           animate={{
             x: push.x,
@@ -516,18 +502,24 @@ function LogoNode({
             patch({ x: num(latest.x, 0), y: num(latest.y, 0), scale: num(latest.scale, 1) || 1 })
           }
         >
-          <Image
-            src={logoSrc(item.file)}
-            alt=""
-            width={2000}
-            height={2000}
-            unoptimized
-            priority={item.w > 18}
-            draggable={false}
-            sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-auto w-full select-none"
-              style={{ width: "100%", height: "auto" }}
-          />
+          <motion.div
+            className="pointer-events-none h-full w-full"
+            initial={false}
+            animate={{ rotate: item.rot }}
+            transition={spring}
+          >
+            <Image
+              src={logoSrc(item.file)}
+              alt=""
+              width={2000}
+              height={2000}
+              unoptimized
+              priority={item.w > 18}
+              draggable={false}
+              sizes="(max-width: 768px) 50vw, 36vw"
+              className="pointer-events-none h-full w-full select-none"
+            />
+          </motion.div>
         </motion.div>
       </motion.div>
 
@@ -559,6 +551,6 @@ function LogoNode({
           {...focusProps}
         />
       )}
-    </div>
+    </motion.div>
   );
 }
