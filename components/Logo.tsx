@@ -16,7 +16,7 @@ const altText: Record<LogoBrand, string> = {
 
 /**
  * Tight crops for the navbar, course, and headlines.
- * The hero cluster uses the untrimmed squares in /logos instead.
+ * The hero cluster uses the trimmed marks in /logos.
  * Kleuro and Dili keep their grey artwork.
  */
 const whiteMark: Record<LogoBrand, string> = {
