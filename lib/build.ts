@@ -24,7 +24,7 @@ export const build = {
           name: products.upcoming[0].name,
           status: "Live",
           note: products.upcoming[0].pitch,
-          href: products.upcoming[0].href,
+          href: products.upcoming[0].href ?? "#products",
         },
         {
           name: products.upcoming[1].name,
