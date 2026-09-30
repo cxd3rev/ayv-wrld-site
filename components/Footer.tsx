@@ -39,6 +39,8 @@ export function Footer() {
   const year = new Date().getFullYear();
   // Hide dead "#" socials until real profile URLs are set in lib/site.ts.
   const liveSocials = socials.filter((item) => item.href && item.href !== "#");
+  const workLinks = footerLinks.filter((link) => !link.href.startsWith("/"));
+  const studioLinks = footerLinks.filter((link) => link.href.startsWith("/"));
 
   return (
     <footer className="border-t border-white/10">
@@ -68,19 +70,33 @@ export function Footer() {
           ) : null}
         </div>
 
-        <ul className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
-          {footerLinks.map((link) => (
-            <li key={link.label} className="min-w-0">
-              <SafeLink
-                href={siteHref(link.href)}
-                external={"external" in link ? link.external : false}
-                className="break-words text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
-              >
-                {link.label}
-              </SafeLink>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-10 flex flex-col gap-8 sm:mt-12 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+          <ul className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8 sm:gap-y-3">
+            {workLinks.map((link) => (
+              <li key={link.label} className="min-w-0">
+                <SafeLink
+                  href={siteHref(link.href)}
+                  external={"external" in link ? link.external : false}
+                  className="break-words text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
+                >
+                  {link.label}
+                </SafeLink>
+              </li>
+            ))}
+          </ul>
+          <ul className="flex flex-col items-start gap-3 sm:items-end">
+            {studioLinks.map((link) => (
+              <li key={link.label}>
+                <SafeLink
+                  href={siteHref(link.href)}
+                  className="text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
+                >
+                  {link.label}
+                </SafeLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <p className="mt-8 flex flex-col gap-1 text-sm text-paper/60 sm:mt-10 sm:flex-row sm:gap-6">
           <a
