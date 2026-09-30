@@ -25,6 +25,7 @@ export const navLinks = [
   { href: "#course", label: "Course" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
+  { href: "/now", label: "Now" },
 ] as const;
 
 export const hero = {
@@ -110,4 +111,7 @@ export const footerLinks = [
   { label: "Me", href: "/me" },
   { label: "Learn", href: "/learn" },
   { label: "Think", href: "/think" },
+  { label: "Journey", href: "/journey" },
+  { label: "Now", href: "/now" },
+  { label: "Build", href: "/build" },
 ] as const;

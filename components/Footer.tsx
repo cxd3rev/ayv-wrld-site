@@ -1,6 +1,6 @@
 import { Logo } from "@/components/Logo";
 import { SafeLink } from "@/components/SafeLink";
-import { homeHref, pageHref } from "@/lib/paths";
+import { homeHref, siteHref } from "@/lib/paths";
 import { footerLinks, links } from "@/lib/site";
 
 const socials = [
@@ -72,13 +72,7 @@ export function Footer() {
           {footerLinks.map((link) => (
             <li key={link.label} className="min-w-0">
               <SafeLink
-                href={
-                  link.href.startsWith("#")
-                    ? homeHref(link.href)
-                    : link.href.startsWith("/")
-                      ? pageHref(link.href)
-                      : link.href
-                }
+                href={siteHref(link.href)}
                 external={"external" in link ? link.external : false}
                 className="break-words text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
               >

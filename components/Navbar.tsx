@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
-import { homeHref } from "@/lib/paths";
+import { homeHref, siteHref } from "@/lib/paths";
 import { navLinks } from "@/lib/site";
 
 export function Navbar() {
@@ -57,7 +57,7 @@ export function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={homeHref(link.href)}
+              href={siteHref(link.href)}
               className="text-[13px] text-paper/70 transition-colors duration-300 hover:text-paper"
             >
               {link.label}
@@ -106,7 +106,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={homeHref(link.href)}
+                href={siteHref(link.href)}
                 onClick={() => setOpen(false)}
                 className="border-b border-white/10 py-4 font-display text-3xl font-semibold tracking-display sm:text-4xl"
               >
