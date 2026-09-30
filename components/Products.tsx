@@ -82,8 +82,8 @@ export function Products() {
                   ) : null}
                   <h3
                     className={`font-display text-[1.75rem] font-bold tracking-display sm:text-3xl ${
-                      product.brand ? "mt-6 sm:mt-8" : "mt-1 pr-24 sm:pr-28"
-                    }`}
+                      product.brand ? "mt-6 sm:mt-8" : "mt-1"
+                    } ${href ? "" : "pr-24 sm:pr-28"}`}
                   >
                     {product.name}
                   </h3>

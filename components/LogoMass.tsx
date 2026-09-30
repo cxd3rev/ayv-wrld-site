@@ -318,12 +318,12 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
+      className="relative flex flex-col items-center bg-[#0A0A0A] px-0 pb-6 pt-16 md:h-[100svh] md:justify-center md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="relative flex w-full justify-center">
+      <div className="relative flex w-full justify-center overflow-hidden md:overflow-visible">
         <div
           ref={stageRef}
-          className="relative aspect-[2/1] w-full max-w-full touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[2/1] w-[112%] max-w-none shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -342,18 +342,9 @@ export function LogoMass() {
             activate(pick(event.clientX, event.clientY), false);
           }}
         >
-          <Image
-            src={`${basePath}/cluster/ayvwrld-cluster.jpg`}
-            alt=""
-            fill
-            unoptimized
-            priority
-            sizes="100vw"
-            className="pointer-events-none object-fill"
-          />
           <div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
             style={{
               background:
                 "radial-gradient(circle, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 68%)",
@@ -413,16 +404,13 @@ export function LogoMass() {
         </div>
       </div>
 
-      <p className="relative z-10 mt-6 max-w-xs px-6 text-center md:mt-3 md:max-w-sm md:px-6">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
+      <p className="relative z-10 mt-5 w-full max-w-sm px-6 text-center md:mt-3">
+        <span className="hidden text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80 md:block">
           AYV WRLD
         </span>
         {/* PLACEHOLDER: one line under the cluster. */}
-        <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
+        <span className="block text-balance text-[13px] leading-snug text-paper/55 md:mt-2 md:text-xs">
           Products, tools, and a course under one name.
-        </span>
-        <span className="mt-3 block text-[11px] uppercase tracking-[0.18em] text-paper/35 md:hidden">
-          Tap a logo
         </span>
       </p>
     </section>
@@ -526,7 +514,7 @@ function LogoNode({
               priority={item.w > 18}
               draggable={false}
               sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-full w-full select-none opacity-0"
+              className="pointer-events-none h-full w-full select-none"
             />
           </motion.div>
         </motion.div>
