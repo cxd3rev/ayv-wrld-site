@@ -109,4 +109,5 @@ export const footerLinks = [
   { label: "Dili Paints", href: links.diliPaints, external: true },
   { label: "Me", href: "/me" },
   { label: "Learn", href: "/learn" },
+  { label: "Think", href: "/think" },
 ] as const;
