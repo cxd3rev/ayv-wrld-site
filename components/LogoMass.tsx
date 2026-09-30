@@ -342,9 +342,18 @@ export function LogoMass() {
             activate(pick(event.clientX, event.clientY), false);
           }}
         >
+          <Image
+            src={`${basePath}/cluster/ayvwrld-cluster.jpg`}
+            alt=""
+            fill
+            unoptimized
+            priority
+            sizes="100vw"
+            className="pointer-events-none object-fill"
+          />
           <div
             aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
             style={{
               background:
                 "radial-gradient(circle, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 68%)",
@@ -517,7 +526,7 @@ function LogoNode({
               priority={item.w > 18}
               draggable={false}
               sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-full w-full select-none"
+              className="pointer-events-none h-full w-full select-none opacity-0"
             />
           </motion.div>
         </motion.div>
