@@ -16,6 +16,8 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const ALPHA_SIZE = 256;
 const ALPHA_CUTOFF = 0.3;
 const MAX_PUSH = 0.025;
+const AYV_WRLD_LOGO = "ayvwrld-logo-white.png";
+const MOBILE_SPIN_DURATION = 16;
 
 type Pose = { x: number; y: number; scale: number; driftX: number; driftY: number };
 type AlphaMap = { data: Uint8ClampedArray | null; aspect: number };
@@ -30,9 +32,8 @@ function isNavigable(item: HubLogo) {
   return !item.centre && item.status === "live" && Boolean(item.href);
 }
 
-function hoverScale(item: PlacedLogo, mobile: boolean) {
+function hoverScale(item: PlacedLogo) {
   if (item.id === "ayvwrld") return 1.05;
-  if (mobile) return item.w < 30 ? 1.45 : 1.2;
   if (item.w < 12) return 1.45;
   return 1.2;
 }
@@ -49,15 +50,9 @@ function anchorProps(href: string) {
   return isExternal(href) ? { target: "_blank" as const, rel: "noopener noreferrer" } : {};
 }
 
-function pushFor(
-  item: PlacedLogo,
-  active: PlacedLogo | undefined,
-  stageW: number,
-  stageH: number,
-  mobile: boolean,
-) {
+function pushFor(item: PlacedLogo, active: PlacedLogo | undefined, stageW: number, stageH: number) {
   if (!active || stageW <= 0) return { x: 0, y: 0, scale: 1 };
-  if (item.id === active.id) return { x: 0, y: 0, scale: hoverScale(item, mobile) };
+  if (item.id === active.id) return { x: 0, y: 0, scale: hoverScale(item) };
   const dx = ((item.x - active.x) / 100) * stageW;
   const dy = ((item.y - active.y) / 100) * stageH;
   const dist = Math.hypot(dx, dy) || 1;
@@ -66,12 +61,11 @@ function pushFor(
   return { x: (dx / dist) * mag, y: (dy / dist) * mag, scale: 0.97 };
 }
 
-function labelStyle(item: PlacedLogo, mobile: boolean) {
-  const reach = item.w * hoverScale(item, mobile) * 0.66;
+function labelStyle(item: PlacedLogo) {
+  const reach = item.w * hoverScale(item) * 0.66;
   let above = item.y + reach > 88;
   if (item.y - reach < 8) above = false;
   const anchor = Math.min(94, Math.max(6, above ? item.y - reach : item.y + reach));
-  // Keep the chip inside the stage on narrow screens; desktop composition is unchanged.
   const left = Math.min(86, Math.max(14, item.x));
   const shift = left > 66 ? "-92%" : left < 28 ? "-8%" : "-50%";
   return {
@@ -175,6 +169,63 @@ function hitTest(
   return null;
 }
 
+function HeroCaption() {
+  return (
+    <p className="relative z-10 mt-6 max-w-xs px-6 text-center md:mt-3 md:max-w-sm md:px-6">
+      <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
+        AYV WRLD
+      </span>
+      {/* PLACEHOLDER: one line under the cluster. */}
+      <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
+        Products, tools, and a course under one name.
+      </span>
+    </p>
+  );
+}
+
+function MobileHeroLogo({ reduce }: { reduce: boolean }) {
+  return (
+    <section
+      aria-label="AYV WRLD"
+      className="relative flex min-h-[70svh] flex-col items-center justify-center bg-[#0A0A0A] px-0 pb-8 pt-20"
+    >
+      <div className="relative h-56 w-full">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 68%)",
+          }}
+        />
+        {/* Outer shell centers; inner motion.div owns rotate so transforms don't clash. */}
+        <div
+          className="absolute left-1/2 top-1/2 w-48 sm:w-52"
+          style={{ transform: "translate(-50%, -50%)" }}
+        >
+          <motion.div
+            animate={reduce ? undefined : { rotate: 360 }}
+            transition={
+              reduce
+                ? undefined
+                : { duration: MOBILE_SPIN_DURATION, repeat: Infinity, ease: "linear" }
+            }
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoSrc(AYV_WRLD_LOGO)}
+              alt="AYV WRLD"
+              draggable={false}
+              className="h-auto w-full select-none"
+            />
+          </motion.div>
+        </div>
+      </div>
+      <HeroCaption />
+    </section>
+  );
+}
+
 export function LogoMass() {
   const reduce = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -190,11 +241,12 @@ export function LogoMass() {
   const [pinnedId, setPinnedId] = useState<string | null>(null);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
+  const [ready, setReady] = useState(false);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [driftOn, setDriftOn] = useState(false);
   const [debugSrc, setDebugSrc] = useState<string | null>(null);
 
-  const logos = hubLogos.map((item) => placeLogo(item, mobile));
+  const logos = hubLogos.map((item) => placeLogo(item));
   const activeId = hoveredId ?? focusedId ?? pinnedId;
   const active = logos.find((item) => item.id === activeId);
   frontRef.current = activeId;
@@ -203,7 +255,10 @@ export function LogoMass() {
 
   useLayoutEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
-    const apply = () => setMobile(media.matches);
+    const apply = () => {
+      setMobile(media.matches);
+      setReady(true);
+    };
     apply();
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
@@ -214,6 +269,7 @@ export function LogoMass() {
   }, [reduce]);
 
   useEffect(() => {
+    if (mobile) return;
     const stage = stageRef.current;
     if (!stage) return;
     const measure = () => setBox({ w: stage.clientWidth, h: stage.clientHeight });
@@ -221,9 +277,10 @@ export function LogoMass() {
     const observer = new ResizeObserver(measure);
     observer.observe(stage);
     return () => observer.disconnect();
-  }, []);
+  }, [mobile]);
 
   useEffect(() => {
+    if (mobile) return;
     let cancelled = false;
     for (const item of hubLogos) {
       loadAlpha(logoSrc(item.file)).then((map) => {
@@ -233,16 +290,14 @@ export function LogoMass() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [mobile]);
 
   useEffect(() => {
+    if (mobile) return;
     const params = new URLSearchParams(window.location.search);
     if (params.get("debug") !== "1") return;
     let cancelled = false;
-    const file = mobile
-      ? "ayvwrld-collection-mobile.png"
-      : "ayvwrld-collection.png";
-    const src = `${basePath}/reference/${file}`;
+    const src = `${basePath}/reference/ayvwrld-collection.png`;
     const image = new window.Image();
     image.onload = () => {
       if (!cancelled) setDebugSrc(src);
@@ -257,6 +312,7 @@ export function LogoMass() {
   }, [mobile]);
 
   useEffect(() => {
+    if (mobile) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
       const menu = document.querySelector<HTMLElement>('[aria-controls="mobile-nav"]');
@@ -269,11 +325,25 @@ export function LogoMass() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [mobile]);
 
   useEffect(() => {
     return () => window.clearTimeout(clearTimer.current);
   }, []);
+
+  // Wait for the breakpoint so neither layout flashes on the wrong viewport.
+  if (!ready) {
+    return (
+      <section
+        aria-label="AYV WRLD"
+        className="relative min-h-[70svh] bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:min-h-0 md:pb-0 md:pt-[4.5rem]"
+      />
+    );
+  }
+
+  if (mobile) {
+    return <MobileHeroLogo reduce={reduce === true} />;
+  }
 
   const spring: Transition = reduce
     ? { duration: 0.12, ease: "easeOut" }
@@ -340,7 +410,7 @@ export function LogoMass() {
           ref={stageRef}
           className="relative mx-auto w-[min(100%,calc((100svh-5.5rem)*9/16))] touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{
-            aspectRatio: mobile ? "9 / 16" : "2 / 1",
+            aspectRatio: "2 / 1",
             cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default",
           }}
           onPointerMove={onPointerMove}
@@ -374,7 +444,7 @@ export function LogoMass() {
               key={item.id}
               item={item}
               index={index}
-              push={pushFor(item, active, box.w, box.h, mobile)}
+              push={pushFor(item, active, box.w, box.h)}
               hot={item.id === activeId}
               drift={driftOn}
               spring={spring}
@@ -387,7 +457,7 @@ export function LogoMass() {
             <div
               data-logo-label={active.id}
               className="pointer-events-auto absolute z-50 w-max max-w-[min(11.5rem,calc(100%-1.5rem))] rounded-xl border border-white/15 bg-white/10 px-3 py-2 shadow-[0_10px_28px_rgba(0,0,0,0.35)] backdrop-blur-md"
-              style={labelStyle(active, mobile)}
+              style={labelStyle(active)}
               onPointerEnter={() => pointAt(active.id)}
               onPointerUp={(event) => event.stopPropagation()}
               onClick={(event) => event.stopPropagation()}
@@ -422,18 +492,7 @@ export function LogoMass() {
         </div>
       </div>
 
-      <p className="relative z-10 mt-6 max-w-xs px-6 text-center md:mt-3 md:max-w-sm md:px-6">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
-          AYV WRLD
-        </span>
-        {/* PLACEHOLDER: one line under the cluster. */}
-        <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
-          Products, tools, and a course under one name.
-        </span>
-        <span className="mt-3 block text-[11px] uppercase tracking-[0.18em] text-paper/35 md:hidden">
-          Tap a logo
-        </span>
-      </p>
+      <HeroCaption />
     </section>
   );
 }
@@ -525,8 +584,8 @@ function LogoNode({
             priority={item.w > 18}
             draggable={false}
             sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-auto w-full select-none"
-              style={{ width: "100%", height: "auto" }}
+            className="pointer-events-none h-auto w-full select-none"
+            style={{ width: "100%", height: "auto" }}
           />
         </motion.div>
       </motion.div>
