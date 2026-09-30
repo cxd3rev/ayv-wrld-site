@@ -327,13 +327,17 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
+      className="relative bg-[#0A0A0A] px-0 pb-8 pt-20 md:flex md:h-[100svh] md:flex-col md:items-center md:justify-center md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="relative flex w-full justify-center">
+      <div className="relative w-full md:flex md:justify-center">
         <div
           ref={stageRef}
-          className="relative aspect-[9/16] w-[min(100%,calc((100svh-5.5rem)*9/16))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
-          style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
+          className="relative mx-auto w-full touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          style={{
+            aspectRatio: mobile ? "3 / 4" : "2 / 1",
+            maxHeight: mobile ? "calc(100vh - 64px)" : undefined,
+            cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default",
+          }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
           onPointerUp={(event) => {
@@ -465,17 +469,15 @@ function LogoNode({
   };
 
   return (
-    <motion.div
+    <div
       className="pointer-events-none absolute aspect-square"
-      initial={false}
       style={{
         position: "absolute",
         zIndex: hot ? 40 : item.z,
         left: `${item.x}%`,
         top: `${item.y}%`,
         width: `${item.w}%`,
-        x: "-50%",
-        y: "-50%",
+        transform: `translate(-50%, -50%) rotate(${item.rot}deg)`,
       }}
     >
       <motion.div
@@ -509,24 +511,17 @@ function LogoNode({
             patch({ x: num(latest.x, 0), y: num(latest.y, 0), scale: num(latest.scale, 1) || 1 })
           }
         >
-          <motion.div
-            className="pointer-events-none h-full w-full"
-            initial={false}
-            animate={{ rotate: item.rot }}
-            transition={spring}
-          >
-            <Image
-              src={logoSrc(item.file)}
-              alt=""
-              width={2000}
-              height={2000}
-              unoptimized
-              priority={item.w > 18}
-              draggable={false}
-              sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-full w-full select-none"
-            />
-          </motion.div>
+          <Image
+            src={logoSrc(item.file)}
+            alt=""
+            width={2000}
+            height={2000}
+            unoptimized
+            priority={item.w > 18}
+            draggable={false}
+            sizes="(max-width: 768px) 50vw, 36vw"
+            className="pointer-events-none h-full w-full select-none"
+          />
         </motion.div>
       </motion.div>
 
@@ -558,6 +553,6 @@ function LogoNode({
           {...focusProps}
         />
       )}
-    </motion.div>
+    </div>
   );
 }
