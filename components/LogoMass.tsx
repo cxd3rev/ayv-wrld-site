@@ -318,12 +318,12 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex flex-col items-center bg-[#0A0A0A] px-0 pb-6 pt-16 md:h-[100svh] md:justify-center md:overflow-visible md:pb-0 md:pt-[4.5rem]"
+      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
     >
-      <div className="relative flex w-full justify-center overflow-hidden md:overflow-visible">
+      <div className="relative flex w-full justify-center">
         <div
           ref={stageRef}
-          className="relative aspect-[2/1] w-[112%] max-w-none shrink-0 touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[3/4] w-[min(100%,calc((100svh-5.5rem)*3/4))] max-w-full touch-manipulation md:aspect-[2/1] md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -404,13 +404,16 @@ export function LogoMass() {
         </div>
       </div>
 
-      <p className="relative z-10 mt-5 w-full max-w-sm px-6 text-center md:mt-3">
-        <span className="hidden text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80 md:block">
+      <p className="relative z-10 mt-6 max-w-xs px-6 text-center md:mt-3 md:max-w-sm md:px-6">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
           AYV WRLD
         </span>
         {/* PLACEHOLDER: one line under the cluster. */}
-        <span className="block text-balance text-[13px] leading-snug text-paper/55 md:mt-2 md:text-xs">
+        <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
           Products, tools, and a course under one name.
+        </span>
+        <span className="mt-3 block text-[11px] uppercase tracking-[0.18em] text-paper/35 md:hidden">
+          Tap a logo
         </span>
       </p>
     </section>

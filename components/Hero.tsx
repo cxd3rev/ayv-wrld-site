@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <>
       <LogoMass />
-      <section aria-labelledby="studio-title" className="relative py-14 sm:py-20 md:py-28 lg:py-32">
+      <section aria-labelledby="studio-title" className="relative py-16 sm:py-20 md:py-28 lg:py-32">
         <div className="shell">
           <div className="flex items-end justify-between gap-4 sm:gap-8 lg:items-center lg:gap-16">
             <Reveal className="min-w-0 flex-1">
@@ -33,7 +33,7 @@ export function Hero() {
 
           <Reveal delay={0.08}>
             <div className="mt-8 flex flex-col gap-6 sm:mt-10 sm:gap-8 lg:flex-row lg:items-end lg:justify-between">
-              <p className="max-w-xl text-balance text-base leading-relaxed text-paper/75 md:text-lg">
+              <p className="max-w-xl text-base leading-relaxed text-paper/75 md:text-lg">
                 {hero.subtext}
               </p>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
