@@ -3,8 +3,8 @@
  * of the stage. w is the file width as a percentage of stage width. rot is
  * clockwise degrees.
  *
- * Matches the supplied desktop coordinate table. Mobile uses a separate
- * single-logo hero in LogoMass — these layouts are desktop-only.
+ * desktop matches the supplied desktop coordinate table.
+ * mobile matches public/reference/ayvwrld-collection-mobile.png.
  *
  * Search this file for "PLACEHOLDER" and "TODO" and edit those lines.
  */
@@ -24,6 +24,7 @@ export type HubLogo = {
   status: "live" | "soon";
   z: number;
   desktop: HubLayout;
+  mobile: HubLayout;
   /**
    * Live destination. http(s) opens in a new tab. A hash stays in the same tab.
    * Omit for the centre mark, "soon" items, and anything without a real URL.
@@ -47,8 +48,8 @@ function moduleHref(slug: string) {
   return `${AUTOMATION_STACK_URL}/automation/${slug}`;
 }
 
-export function placeLogo(item: HubLogo): PlacedLogo {
-  return { ...item, ...item.desktop };
+export function placeLogo(item: HubLogo, mobile: boolean): PlacedLogo {
+  return { ...item, ...(mobile ? item.mobile : item.desktop) };
 }
 
 export const hubLogos: HubLogo[] = [
@@ -62,6 +63,7 @@ export const hubLogos: HubLogo[] = [
     centre: true,
     z: 1,
     desktop: { x: 50.48, y: 41.66, w: 43.16, rot: 0 },
+    mobile: { x: 55, y: 44, w: 78, rot: 0 },
   },
   {
     id: "rated",
@@ -73,6 +75,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://rated-ivory.vercel.app/",
     z: 2,
     desktop: { x: 67.05, y: 58.0, w: 21.99, rot: 0 },
+    mobile: { x: 30, y: 64, w: 56, rot: 0 },
   },
   {
     id: "oma",
@@ -85,6 +88,7 @@ export const hubLogos: HubLogo[] = [
     href: OMA_SITE_URL || "#course",
     z: 3,
     desktop: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
+    mobile: { x: 84, y: 15, w: 32, rot: -8 },
   },
   {
     id: "ayvstack",
@@ -96,6 +100,7 @@ export const hubLogos: HubLogo[] = [
     href: AUTOMATION_STACK_URL,
     z: 2,
     desktop: { x: 32.2, y: 65.62, w: 19.46, rot: 0 },
+    mobile: { x: 19, y: 13, w: 24, rot: -10 },
   },
   {
     id: "dilipaints",
@@ -107,6 +112,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://dilipaints.be/",
     z: 4,
     desktop: { x: 62.85, y: 80.73, w: 10.83, rot: 20 },
+    mobile: { x: 13, y: 83, w: 28, rot: 15 },
   },
   {
     id: "kleuro",
@@ -117,6 +123,7 @@ export const hubLogos: HubLogo[] = [
     status: "soon",
     z: 4,
     desktop: { x: 70.67, y: 34.16, w: 10.88, rot: 20 },
+    mobile: { x: 50, y: 16, w: 24, rot: 0 },
   },
   {
     id: "avyro",
@@ -128,6 +135,7 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("avyro"),
     z: 3,
     desktop: { x: 42.87, y: 66.78, w: 11.61, rot: -100 },
+    mobile: { x: 13, y: 39, w: 26, rot: 10 },
   },
   {
     id: "velto",
@@ -139,6 +147,7 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("velto"),
     z: 3,
     desktop: { x: 38.88, y: 56.92, w: 10.93, rot: -20 },
+    mobile: { x: 91, y: 43, w: 18, rot: 0 },
   },
   {
     id: "rovyn",
@@ -150,6 +159,7 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("rovyn"),
     z: 3,
     desktop: { x: 26.88, y: 52.62, w: 9.89, rot: 20 },
+    mobile: { x: 89, y: 82, w: 24, rot: 10 },
   },
   {
     id: "orvyn",
@@ -161,6 +171,7 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("orvyn"),
     z: 3,
     desktop: { x: 32.68, y: 44.68, w: 11.51, rot: 0 },
+    mobile: { x: 77, y: 60, w: 46, rot: 0 },
   },
   {
     id: "nexro",
@@ -172,6 +183,7 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("nexro"),
     z: 3,
     desktop: { x: 39.71, y: 81.92, w: 9.59, rot: 0 },
+    mobile: { x: 52, y: 79, w: 30, rot: 0 },
   },
   {
     id: "ravelo",
@@ -183,5 +195,6 @@ export const hubLogos: HubLogo[] = [
     href: moduleHref("ravelo"),
     z: 3,
     desktop: { x: 22.49, y: 65.87, w: 11.86, rot: 0 },
+    mobile: { x: 68, y: 90, w: 26, rot: -15 },
   },
 ];
