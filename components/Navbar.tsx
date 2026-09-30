@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
+import { homeHref } from "@/lib/paths";
 import { navLinks } from "@/lib/site";
 
 export function Navbar() {
@@ -42,7 +43,7 @@ export function Navbar() {
     >
       <div className="shell flex h-16 items-center justify-between gap-3 md:h-[4.5rem]">
         <a
-          href="#main"
+          href={homeHref("main")}
           onClick={() => setOpen(false)}
           className="flex min-w-0 items-center gap-2.5"
         >
@@ -56,14 +57,14 @@ export function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={homeHref(link.href)}
               className="text-[13px] text-paper/70 transition-colors duration-300 hover:text-paper"
             >
               {link.label}
             </a>
           ))}
           <a
-            href="#contact"
+            href={homeHref("contact")}
             className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0]"
           >
             Get in touch
@@ -105,7 +106,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={homeHref(link.href)}
                 onClick={() => setOpen(false)}
                 className="border-b border-white/10 py-4 font-display text-3xl font-semibold tracking-display sm:text-4xl"
               >
@@ -113,7 +114,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={homeHref("contact")}
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex h-12 min-h-[48px] w-full items-center justify-center rounded-full bg-navy text-sm font-medium text-paper"
             >

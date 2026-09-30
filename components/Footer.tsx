@@ -1,5 +1,6 @@
 import { Logo } from "@/components/Logo";
 import { SafeLink } from "@/components/SafeLink";
+import { homeHref, pageHref } from "@/lib/paths";
 import { footerLinks, links } from "@/lib/site";
 
 const socials = [
@@ -43,7 +44,7 @@ export function Footer() {
     <footer className="border-t border-white/10">
       <div className="shell py-12 sm:py-14 md:py-16">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
-          <a href="#main" className="flex min-w-0 items-center gap-3">
+          <a href={homeHref("main")} className="flex min-w-0 items-center gap-3">
             <Logo brand="ayvwrld" className="h-9 w-9 shrink-0" />
             <span className="font-display text-sm font-semibold tracking-[0.18em]">
               AYV WRLD
@@ -71,7 +72,13 @@ export function Footer() {
           {footerLinks.map((link) => (
             <li key={link.label} className="min-w-0">
               <SafeLink
-                href={link.href}
+                href={
+                  link.href.startsWith("#")
+                    ? homeHref(link.href)
+                    : link.href.startsWith("/")
+                      ? pageHref(link.href)
+                      : link.href
+                }
                 external={"external" in link ? link.external : false}
                 className="break-words text-sm text-paper/60 transition-colors duration-300 hover:text-paper"
               >
