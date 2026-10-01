@@ -1,9 +1,9 @@
 /**
- * Marketing copy and outbound links for the AYV WRLD hub.
+ * Copy and outbound links for AYV WRLD.
  * Search this file for "PLACEHOLDER" and replace those lines.
  *
- * Focus since October 2026: one product and one service, both for the same
- * niche (heating installers in Flanders). Everything else is a side project.
+ * The homepage sells websites. Dili Paints stays there as proof of work.
+ * AYV Automation and One Man Army Stack are sections on the same page.
  */
 
 export const links = {
@@ -26,75 +26,78 @@ export const links = {
 } as const;
 
 export const navLinks = [
-  { href: "#products", label: "Product" },
-  { href: "/installateurs", label: "Websites" },
+  { href: "#websites", label: "Websites" },
   { href: "#work", label: "Work" },
+  { href: "#product", label: "Automation" },
+  { href: "#course", label: "Course" },
   { href: "#about", label: "About" },
-  { href: "/now", label: "Now" },
 ] as const;
 
 export const hero = {
-  eyebrow: "Independent studio · Belgium",
+  eyebrow: "Websites · Belgium",
   title: ["Achieve", "Your", "Vision"],
   subtext:
-    "One product and one service for heating installers in Flanders. Plus the side projects I learn with.",
-  primaryCta: { label: "See the product", href: "#products" },
-  secondaryCta: { label: "Websites for installers", href: "/installateurs" },
+    "I build websites for anyone who needs one. Clear, fast, and made so people can find you and get in touch.",
+  primaryCta: { label: "Get a website", href: "#websites" },
+  secondaryCta: { label: "See the work", href: "#work" },
 };
 
 /**
- * The one product. Built in a separate repo; this site only points to it.
- * PLACEHOLDER: "AYV Onderhoud" is a working name. Rename it here and it
- * changes everywhere on the hub.
+ * The SaaS product lives in cxd3rev/ayv-wrld2. This site only names it and links out.
  */
 export const product = {
-  name: "AYV Onderhoud",
-  label: "The product",
-  niche: "For heating installers in Flanders",
+  // TODO: final product name
+  name: "AYV Automation",
+  label: "A project",
   pitch:
-    "Every boiler you service, in one place. Legal maintenance dates, automatic reminders to your customers, online booking and the certificates you have to keep.",
-  points: [
-    "Reminders on the legal schedule: yearly for oil, every two years for gas",
-    "Customers pick a slot online instead of calling",
-    "Certificates and history per address, never lost again",
-  ],
-  status: "In development · looking for the first installers to test it",
+    "A project I'm building for heating installers in Flanders. It has its own site. This page only points there.",
+  status: "In development.",
   cta: "Visit the product",
   href: links.product,
   external: true,
 };
 
-/** The one service, for the same niche. Full Dutch page at /installateurs. */
-export const service = {
-  label: "The service",
-  name: "Websites for heating installers",
-  pitch:
-    "Clear, fast websites for installers in Flanders, with maintenance requests built in. Same customers as the product, so the two work together.",
-  cta: "See packages (Dutch)",
-  href: links.installateurs,
-};
-
-export const products = {
-  title: "One product. One trade.",
-  sideTitle: "Side projects",
-  sideIntro: "Things I build to learn. Not the focus, still shipped.",
-  side: [
+/** Homepage offer: a website for anyone, not a product pitch. */
+export const websites = {
+  label: "Websites",
+  title: "A website, if you need one.",
+  intro:
+    "For a person, a shop, or a company. You tell me what the site has to do. I design it, write it, and put it online.",
+  points: [
     {
-      id: "rated",
-      name: "Rated",
-      pitch: "Rate and rank your favorite hip-hop albums.",
-      brand: "rated" as const,
-      href: links.rated,
-      external: true,
-      cta: "Read more",
+      title: "Clear on a phone",
+      body: "People look you up on their phone. The site is built for that first.",
     },
     {
-      id: "kleuro",
-      name: "Kleuro",
-      pitch: "Point your camera at a room. See it repainted instantly.",
-      brand: "kleuro" as const,
+      title: "About what you do",
+      body: "What you offer, where you work, and why someone should contact you. No filler pages.",
+    },
+    {
+      title: "A way to reach you",
+      body: "A contact form or a button that lands in your inbox. You can answer from there.",
     },
   ],
+  stepsTitle: "How it works",
+  steps: [
+    {
+      n: "01",
+      title: "We talk",
+      body: "What you do, who the site is for, and what should happen when someone visits.",
+    },
+    {
+      n: "02",
+      title: "I build it",
+      body: "You see the site before it goes online. Text and photos can still change.",
+    },
+    {
+      n: "03",
+      title: "It goes live",
+      body: "I connect the domain and leave you with a site you can send to people.",
+    },
+  ],
+  note: "You get a fixed price after the first conversation. No price on this page until we know what you need.",
+  cta: "Get in touch",
+  href: "#contact",
 };
 
 export const course = {
@@ -113,11 +116,11 @@ export const course = {
 };
 
 export const work = {
-  title: "Selected work.",
+  title: "A site I already built.",
   dili: {
     name: "Dili Paints",
     description:
-      "A clean, trustworthy web presence for a local painting business.",
+      "A website for a painting business in Flanders. This is the kind of site I can build.",
     meta: "Flanders · Interior and exterior · Kleur met klasse",
     href: links.diliPaints,
     cta: "View live site",
@@ -125,22 +128,13 @@ export const work = {
 };
 
 export const about = {
-  title: "One studio. No committee.",
+  title: "Built by one person.",
   // PLACEHOLDER: personalize this bio — add your name or a longer story if you want one.
-  bio: "Developer and founder building AYV WRLD. One product, one trade, done properly. Solo-built, practical tools, no fluff.",
+  bio: "I'm Aron. AYV WRLD is where I make websites. If you need one, write or call.",
 };
 
 export const footerLinks = [
-  { label: "AYV Onderhoud", href: links.product, external: true },
-  { label: "Websites voor installateurs", href: "/installateurs" },
-  { label: "Rated", href: links.rated, external: true },
-  { label: "Kleuro", href: "#kleuro" },
-  { label: "One Man Army Stack", href: "#course" },
   { label: "Dili Paints", href: links.diliPaints, external: true },
-  { label: "Me", href: "/me" },
-  { label: "Learn", href: "/learn" },
-  { label: "Think", href: "/think" },
-  { label: "Journey", href: "/journey" },
-  { label: "Now", href: "/now" },
-  { label: "Build", href: "/build" },
+  { label: "AYV Automation", href: links.product, external: true },
+  { label: "One Man Army Stack", href: "#course" },
 ] as const;

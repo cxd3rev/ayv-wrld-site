@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
 import { now } from "@/lib/now";
-import { homeHref, pageHref } from "@/lib/paths";
+import { homeHref, pageHref, siteHref } from "@/lib/paths";
 
 export const metadata: Metadata = {
   title: "Now — AYV WRLD",
@@ -42,6 +42,17 @@ export default function NowPage() {
                     <p className="mt-4 text-base leading-relaxed text-paper/75">
                       {item.body}
                     </p>
+                    {"href" in item && item.href ? (
+                      <a
+                        href={siteHref(item.href)}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="mt-4 inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
+                      >
+                        Visit the product
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : null}
                   </article>
                 </Reveal>
               ))}

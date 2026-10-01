@@ -318,12 +318,12 @@ export function LogoMass() {
   return (
     <section
       aria-label="AYV WRLD"
-      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:overflow-visible md:pb-0 md:pt-[4.5rem]"
+      className="relative flex flex-col items-center justify-center overflow-x-clip bg-[#0A0A0A] px-0 pb-8 pt-20 md:h-[100svh] md:pb-0 md:pt-[4.5rem]"
     >
       <div className="relative flex w-full justify-center">
         <div
           ref={stageRef}
-          className="relative aspect-[2/1] w-full max-w-full touch-manipulation md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
+          className="relative aspect-[2/1] w-full max-w-full touch-manipulation overflow-hidden md:w-[min(100vw,164vh,calc((100svh-7.5rem)*2))]"
           style={{ cursor: pointerItem && isNavigable(pointerItem) ? "pointer" : "default" }}
           onPointerMove={onPointerMove}
           onPointerLeave={() => pointAt(null)}
@@ -410,7 +410,7 @@ export function LogoMass() {
         </span>
         {/* PLACEHOLDER: one line under the cluster. */}
         <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
-          Products, tools, and a course under one name.
+          Projects, client work, and a course under one name.
         </span>
         <span className="mt-3 block text-[11px] uppercase tracking-[0.18em] text-paper/35 md:hidden">
           Tap a logo
@@ -457,7 +457,7 @@ function LogoNode({
 
   return (
     <motion.div
-      className="pointer-events-none absolute aspect-square"
+      className="pointer-events-none absolute aspect-square overflow-hidden"
       initial={false}
       animate={{ left: `${item.x}%`, top: `${item.y}%`, width: `${item.w}%` }}
       transition={spring}
@@ -517,7 +517,7 @@ function LogoNode({
               priority={item.w > 18}
               draggable={false}
               sizes="(max-width: 768px) 50vw, 36vw"
-              className="pointer-events-none h-full w-full select-none"
+              className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain"
             />
           </motion.div>
         </motion.div>

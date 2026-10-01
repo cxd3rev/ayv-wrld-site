@@ -21,7 +21,7 @@ export function Course() {
       <div className="shell relative z-10 grid items-start gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="min-w-0 lg:col-span-5">
           <p className="mb-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55 sm:mb-8">
-            <span>03</span>
+            <span>05</span>
             <span className="h-px w-8 bg-white/20" />
             <span>Course</span>
           </p>
@@ -51,12 +51,15 @@ export function Course() {
               </li>
             ))}
           </ol>
-          <SafeLink
-            href={course.href}
-            className="mt-10 inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
-          >
-            {course.cta}
-          </SafeLink>
+          {course.href.startsWith("http") ? (
+            <SafeLink
+              href={course.href}
+              external
+              className="mt-10 inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
+            >
+              {course.cta}
+            </SafeLink>
+          ) : null}
         </Reveal>
       </div>
     </section>

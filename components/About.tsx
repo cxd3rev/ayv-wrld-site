@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
-import { pageHref } from "@/lib/paths";
 import { about, links } from "@/lib/site";
 
 export function About() {
@@ -31,7 +30,7 @@ export function About() {
       <div className="shell relative z-10 grid gap-10 sm:gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal className="min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55">
-            <span>05</span>
+            <span>06</span>
             <span className="h-px w-8 bg-white/20" />
             <span>About</span>
           </p>
@@ -41,12 +40,6 @@ export function About() {
           <p className="mt-6 max-w-md text-base leading-relaxed text-paper/75 md:text-lg">
             {about.bio}
           </p>
-          <a
-            href={pageHref("/me")}
-            className="mt-6 inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
-          >
-            More about me
-          </a>
           <div className="mt-8 flex flex-col gap-2">
             <a
               href={`mailto:${links.email}`}

@@ -1,11 +1,12 @@
+import { links, product } from "@/lib/site";
+
 /**
  * Hero cluster. x/y are the centre of each full padded square, as a percentage
  * of the stage. w is the file width as a percentage of stage width. rot is
  * clockwise degrees.
  *
  * desktop matches the supplied desktop coordinate table.
- * mobile matches public/reference/ayvwrld-collection-mobile.png: a tall stack,
- * not a scaled copy of the desktop banner.
+ * mobile uses the same 2:1 cluster as desktop.
  *
  * Search this file for "PLACEHOLDER" and "TODO" and edit those lines.
  */
@@ -36,9 +37,6 @@ export type HubLogo = {
 };
 
 export type PlacedLogo = HubLogo & HubLayout;
-
-/** The one product (repo: cxd3rev/ayv-wrld2). The six module logos were retired. */
-export const AUTOMATION_STACK_URL = "https://www.ayvautomation.space";
 
 // TODO: paste the real OMA site URL. Do not invent a domain.
 // While this is empty, the OMA mark uses the temporary in-page #course link.
@@ -89,10 +87,10 @@ export const hubLogos: HubLogo[] = [
   {
     id: "ayvstack",
     file: "ayvstack-logo-white.png",
-    name: "AYV Onderhoud",
-    description: "The product: boiler maintenance for heating installers.",
+    name: product.name,
+    description: "A project I'm building. It has its own site.",
     status: "live",
-    href: AUTOMATION_STACK_URL,
+    href: links.product,
     z: 3,
     desktop: { x: 30.5, y: 60.5, w: 25, rot: 0 },
     mobile: { x: 30.5, y: 60.5, w: 25, rot: 0 },

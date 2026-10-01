@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useSurfaceTone, type SurfaceTone } from "@/components/Surface";
+import { product } from "@/lib/site";
 
 export type LogoBrand = "ayvwrld" | "ayvstack" | "oma" | "rated" | "kleuro" | "dili";
 
 const altText: Record<LogoBrand, string> = {
   ayvwrld: "AYV WRLD",
-  ayvstack: "AYV Onderhoud",
+  ayvstack: product.name,
   oma: "One Man Army Stack",
   rated: "Rated",
   kleuro: "Kleuro",

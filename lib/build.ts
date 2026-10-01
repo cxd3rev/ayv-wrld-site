@@ -3,50 +3,22 @@
  * plus empty slots for experiments and an archive.
  */
 
-import { course, product, products, service, work } from "@/lib/site";
+import { course, product, work } from "@/lib/site";
 
 export const build = {
   label: "Build",
   title: "What exists.",
   intro:
-    "The product, the service, side projects, client work and the course. Experiments stay empty until there is something real to put here.",
+    "AYV Automation, Dili Paints, and One Man Army Stack.",
   groups: [
     {
       label: "Product",
       items: [
         {
           name: product.name,
-          status: "In development",
-          note: product.pitch,
+          status: "A project I'm building",
+          note: "It has its own site.",
           href: product.href,
-        },
-      ],
-    },
-    {
-      label: "Service",
-      items: [
-        {
-          name: service.name,
-          status: "Open for clients",
-          note: service.pitch,
-          href: service.href,
-        },
-      ],
-    },
-    {
-      label: "Side projects",
-      items: [
-        {
-          name: products.side[0].name,
-          status: "Live",
-          note: products.side[0].pitch,
-          href: products.side[0].href ?? "#products",
-        },
-        {
-          name: products.side[1].name,
-          status: "Coming soon",
-          note: products.side[1].pitch,
-          href: "#kleuro",
         },
       ],
     },
@@ -66,9 +38,9 @@ export const build = {
       items: [
         {
           name: course.name,
-          status: "On the studio page",
+          status: "On the homepage",
           note: course.description,
-          href: "#course",
+          href: "/#course",
         },
       ],
     },

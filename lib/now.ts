@@ -2,6 +2,8 @@
  * Current focus. Edit this file when the work changes.
  */
 
+import { links, product } from "@/lib/site";
+
 export const now = {
   label: "Now",
   title: "Right now.",
@@ -10,7 +12,8 @@ export const now = {
   items: [
     {
       label: "Building",
-      body: "One product, one trade. AYV Onderhoud helps heating installers in Flanders keep track of every boiler they service, and I build websites for the same installers. Rated, Kleuro and AYV Invest stay side projects.",
+      body: `I build websites for people who need one. ${product.name} is a separate project, on its own site.`,
+      href: links.product,
     },
     {
       label: "Learning",
@@ -34,7 +37,7 @@ export const now = {
     },
     {
       label: "Next",
-      body: "Get AYV Onderhoud into the hands of the first installers, and finish it properly instead of jumping to the next idea.",
+      body: `Keep building ${product.name}, and finish it properly instead of jumping to the next idea.`,
     },
   ],
   pages: [
