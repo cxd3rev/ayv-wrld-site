@@ -92,19 +92,10 @@ export const installateurs = {
   },
 
   product: {
-    label: "Daarna",
-    title: `Je site brengt nieuwe klanten. ${product.name} houdt je bestaande klanten.`,
-    body: "Het product dat ik bouw voor dezelfde installateurs. Het houdt elke ketel bij die je onderhoudt en herinnert je klanten op tijd.",
-    points: [
-      "Elke ketel per adres, met brandstof en datum van de laatste beurt",
-      "Automatische herinnering op de wettelijke termijn in Vlaanderen: jaarlijks bij stookolie, om de twee jaar bij gas",
-      "Je klant kiest zelf een moment",
-      "Attesten digitaal bewaard",
-    ],
-    status:
-      "In ontwikkeling. Ik zoek een paar installateurs die het gratis willen testen en mee vormgeven.",
-    primary: { label: "Word testklant", href: mail(`Testklant ${product.name}`) },
-    secondary: { label: "Meer over het product", href: product.href },
+    label: "Een project dat ik bouw",
+    body: `Los van deze websites bouw ik ${product.name}, een apart project voor dezelfde installateurs. Het staat op zijn eigen site.`,
+    cta: "Bekijk het product",
+    href: product.href,
   },
 
   process: {

@@ -16,8 +16,8 @@ export const build = {
       items: [
         {
           name: product.name,
-          status: "In development",
-          note: product.pitch,
+          status: "A project I'm building",
+          note: "It has its own site.",
           href: product.href,
         },
       ],

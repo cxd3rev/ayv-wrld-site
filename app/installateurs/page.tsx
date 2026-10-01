@@ -155,34 +155,14 @@ export default function InstallateursPage() {
               </p>
             </Reveal>
             <Reveal delay={0.06} className="min-w-0 lg:col-span-7">
-              <h2 className="font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:text-5xl sm:leading-[0.95]">
-                {copy.product.title}
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">
+              <p className="max-w-xl text-base leading-relaxed text-paper/70 md:text-lg">
                 {copy.product.body}
               </p>
-              <ul className="mt-8 max-w-xl">
-                {copy.product.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex gap-3 border-t border-white/10 py-3 text-sm text-paper/80 sm:text-base"
-                  >
-                    <span aria-hidden className="mt-[8px] inline-block h-1.5 w-1.5 shrink-0 bg-navy" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 max-w-xl text-sm text-paper/55">{copy.product.status}</p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-                <a href={copy.product.primary.href} className={primaryButton}>
-                  {copy.product.primary.label}
-                </a>
-                <span className="group">
-                  <ArrowLink href={copy.product.secondary.href} external>
-                    {copy.product.secondary.label}
-                    <span className="sr-only"> (opent in een nieuw tabblad)</span>
-                  </ArrowLink>
-                </span>
+              <div className="group mt-8">
+                <ArrowLink href={copy.product.href} external>
+                  {copy.product.cta}
+                  <span className="sr-only"> (opent in een nieuw tabblad)</span>
+                </ArrowLink>
               </div>
             </Reveal>
           </div>
