@@ -21,7 +21,7 @@ export function Course() {
       <div className="shell relative z-10 grid items-start gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="min-w-0 lg:col-span-5">
           <p className="mb-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55 sm:mb-8">
-            <span>03</span>
+            <span>05</span>
             <span className="h-px w-8 bg-white/20" />
             <span>Course</span>
           </p>

@@ -38,9 +38,9 @@ export const build = {
       items: [
         {
           name: course.name,
-          status: "On the projects page",
+          status: "On the homepage",
           note: course.description,
-          href: "/projects",
+          href: "/#course",
         },
       ],
     },

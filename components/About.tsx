@@ -30,7 +30,7 @@ export function About() {
       <div className="shell relative z-10 grid gap-10 sm:gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal className="min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55">
-            <span>04</span>
+            <span>06</span>
             <span className="h-px w-8 bg-white/20" />
             <span>About</span>
           </p>
