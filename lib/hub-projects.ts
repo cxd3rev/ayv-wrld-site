@@ -1,11 +1,12 @@
+import { links, product } from "@/lib/site";
+
 /**
  * Hero cluster. x/y are the centre of each full padded square, as a percentage
  * of the stage. w is the file width as a percentage of stage width. rot is
  * clockwise degrees.
  *
  * desktop matches the supplied desktop coordinate table.
- * mobile matches public/reference/ayvwrld-collection-mobile.png: a tall stack,
- * not a scaled copy of the desktop banner.
+ * mobile uses the same 2:1 cluster as desktop.
  *
  * Search this file for "PLACEHOLDER" and "TODO" and edit those lines.
  */
@@ -37,9 +38,6 @@ export type HubLogo = {
 
 export type PlacedLogo = HubLogo & HubLayout;
 
-/** The one product (repo: cxd3rev/ayv-wrld2). The six module logos were retired. */
-export const AUTOMATION_STACK_URL = "https://www.ayvautomation.space";
-
 // TODO: paste the real OMA site URL. Do not invent a domain.
 // While this is empty, the OMA mark uses the temporary in-page #course link.
 export const OMA_SITE_URL: string = "";
@@ -59,7 +57,7 @@ export const hubLogos: HubLogo[] = [
     centre: true,
     z: 1,
     desktop: { x: 50.48, y: 41.66, w: 43.16, rot: 0 },
-    mobile: { x: 50, y: 24, w: 58, rot: 0 },
+    mobile: { x: 50.48, y: 41.66, w: 43.16, rot: 0 },
   },
   {
     id: "rated",
@@ -71,7 +69,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://rated-ivory.vercel.app/",
     z: 2,
     desktop: { x: 67.05, y: 58.0, w: 21.99, rot: 0 },
-    mobile: { x: 66, y: 72, w: 26, rot: 0 },
+    mobile: { x: 67.05, y: 58.0, w: 21.99, rot: 0 },
   },
   {
     id: "oma",
@@ -84,18 +82,18 @@ export const hubLogos: HubLogo[] = [
     href: OMA_SITE_URL || "#course",
     z: 3,
     desktop: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
-    mobile: { x: 71, y: 49, w: 28, rot: 8 },
+    mobile: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
   },
   {
     id: "ayvstack",
     file: "ayvstack-logo-white.png",
-    name: "AYV Onderhoud",
-    description: "The product: boiler maintenance for heating installers.",
+    name: product.name,
+    description: "A project I'm building. It has its own site.",
     status: "live",
-    href: AUTOMATION_STACK_URL,
+    href: links.product,
     z: 3,
     desktop: { x: 30.5, y: 60.5, w: 25, rot: 0 },
-    mobile: { x: 31, y: 54, w: 36, rot: -6 },
+    mobile: { x: 30.5, y: 60.5, w: 25, rot: 0 },
   },
   {
     id: "dilipaints",
@@ -107,7 +105,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://dilipaints.be/",
     z: 4,
     desktop: { x: 62.85, y: 80.73, w: 10.83, rot: 20 },
-    mobile: { x: 38, y: 78, w: 18, rot: 15 },
+    mobile: { x: 62.85, y: 80.73, w: 10.83, rot: 20 },
   },
   {
     id: "kleuro",
@@ -118,6 +116,6 @@ export const hubLogos: HubLogo[] = [
     status: "soon",
     z: 4,
     desktop: { x: 70.67, y: 34.16, w: 10.88, rot: 20 },
-    mobile: { x: 20, y: 76, w: 16, rot: -15 },
+    mobile: { x: 70.67, y: 34.16, w: 10.88, rot: 20 },
   },
 ];

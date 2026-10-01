@@ -1,9 +1,9 @@
 /**
- * Marketing copy and outbound links for the AYV WRLD hub.
+ * Copy and outbound links for the AYV WRLD portfolio.
  * Search this file for "PLACEHOLDER" and replace those lines.
  *
- * Focus since October 2026: one product and one service, both for the same
- * niche (heating installers in Flanders). Everything else is a side project.
+ * AYV WRLD is the personal site. The heating-installer product lives in
+ * another repo and is only linked from here.
  */
 
 export const links = {
@@ -26,7 +26,7 @@ export const links = {
 } as const;
 
 export const navLinks = [
-  { href: "#products", label: "Product" },
+  { href: "#products", label: "Projects" },
   { href: "/installateurs", label: "Websites" },
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
@@ -37,28 +37,21 @@ export const hero = {
   eyebrow: "Independent studio · Belgium",
   title: ["Achieve", "Your", "Vision"],
   subtext:
-    "One product and one service for heating installers in Flanders. Plus the side projects I learn with.",
-  primaryCta: { label: "See the product", href: "#products" },
+    "I'm Aron. AYV WRLD is my studio: the projects I build, what I'm learning, and the work I do for clients.",
+  primaryCta: { label: "See the projects", href: "#products" },
   secondaryCta: { label: "Websites for installers", href: "/installateurs" },
 };
 
 /**
- * The one product. Built in a separate repo; this site only points to it.
- * PLACEHOLDER: "AYV Onderhoud" is a working name. Rename it here and it
- * changes everywhere on the hub.
+ * The SaaS product lives in cxd3rev/ayv-wrld2. This site only names it and links out.
  */
 export const product = {
+  // TODO: final product name
   name: "AYV Onderhoud",
-  label: "The product",
-  niche: "For heating installers in Flanders",
+  label: "A project",
   pitch:
-    "Every boiler you service, in one place. Legal maintenance dates, automatic reminders to your customers, online booking and the certificates you have to keep.",
-  points: [
-    "Reminders on the legal schedule: yearly for oil, every two years for gas",
-    "Customers pick a slot online instead of calling",
-    "Certificates and history per address, never lost again",
-  ],
-  status: "In development · looking for the first installers to test it",
+    "A project I'm building for heating installers in Flanders. It has its own site. This page only points there.",
+  status: "In development.",
   cta: "Visit the product",
   href: links.product,
   external: true,
@@ -69,15 +62,15 @@ export const service = {
   label: "The service",
   name: "Websites for heating installers",
   pitch:
-    "Clear, fast websites for installers in Flanders, with maintenance requests built in. Same customers as the product, so the two work together.",
+    "Clear, fast websites for heating installers in Flanders, with maintenance requests built in.",
   cta: "See packages (Dutch)",
   href: links.installateurs,
 };
 
 export const products = {
-  title: "One product. One trade.",
+  title: "Projects.",
   sideTitle: "Side projects",
-  sideIntro: "Things I build to learn. Not the focus, still shipped.",
+  sideIntro: "Things I build to learn.",
   side: [
     {
       id: "rated",
@@ -127,11 +120,11 @@ export const work = {
 export const about = {
   title: "One studio. No committee.",
   // PLACEHOLDER: personalize this bio — add your name or a longer story if you want one.
-  bio: "Developer and founder building AYV WRLD. One product, one trade, done properly. Solo-built, practical tools, no fluff.",
+  bio: "I'm Aron, a developer building AYV WRLD on my own. Projects, client work, and the things I'm still learning.",
 };
 
 export const footerLinks = [
-  { label: "AYV Onderhoud", href: links.product, external: true },
+  { label: product.name, href: links.product, external: true },
   { label: "Websites voor installateurs", href: "/installateurs" },
   { label: "Rated", href: links.rated, external: true },
   { label: "Kleuro", href: "#kleuro" },
