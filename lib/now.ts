@@ -10,7 +10,7 @@ export const now = {
   items: [
     {
       label: "Building",
-      body: "AYV WRLD is the home for this. Rated and AYV Automation are in progress. AYV Invest is something I'm developing too. They're being built, not presented as finished.",
+      body: "One product, one trade. AYV Onderhoud helps heating installers in Flanders keep track of every boiler they service, and I build websites for the same installers. Rated, Kleuro and AYV Invest stay side projects.",
     },
     {
       label: "Learning",
@@ -34,7 +34,7 @@ export const now = {
     },
     {
       label: "Next",
-      body: "Keep building, keep learning, and finish the next meaningful piece of software instead of jumping to the next idea.",
+      body: "Get AYV Onderhoud into the hands of the first installers, and finish it properly instead of jumping to the next idea.",
     },
   ],
   pages: [

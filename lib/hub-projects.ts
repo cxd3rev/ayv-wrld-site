@@ -37,17 +37,12 @@ export type HubLogo = {
 
 export type PlacedLogo = HubLogo & HubLayout;
 
+/** The one product (repo: cxd3rev/ayv-wrld2). The six module logos were retired. */
 export const AUTOMATION_STACK_URL = "https://www.ayvautomation.space";
 
 // TODO: paste the real OMA site URL. Do not invent a domain.
 // While this is empty, the OMA mark uses the temporary in-page #course link.
 export const OMA_SITE_URL: string = "";
-
-// Product pages on the live stack site are /automation/{slug}.
-// The homepage has no #avyro-style anchors.
-function moduleHref(slug: string) {
-  return `${AUTOMATION_STACK_URL}/automation/${slug}`;
-}
 
 export function placeLogo(item: HubLogo, mobile: boolean): PlacedLogo {
   return { ...item, ...(mobile ? item.mobile : item.desktop) };
@@ -64,7 +59,7 @@ export const hubLogos: HubLogo[] = [
     centre: true,
     z: 1,
     desktop: { x: 50.48, y: 41.66, w: 43.16, rot: 0 },
-    mobile: { x: 50, y: 20, w: 50, rot: 0 },
+    mobile: { x: 50, y: 24, w: 58, rot: 0 },
   },
   {
     id: "rated",
@@ -76,7 +71,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://rated-ivory.vercel.app/",
     z: 2,
     desktop: { x: 67.05, y: 58.0, w: 21.99, rot: 0 },
-    mobile: { x: 28, y: 55, w: 22, rot: 0 },
+    mobile: { x: 66, y: 72, w: 26, rot: 0 },
   },
   {
     id: "oma",
@@ -89,19 +84,18 @@ export const hubLogos: HubLogo[] = [
     href: OMA_SITE_URL || "#course",
     z: 3,
     desktop: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
-    mobile: { x: 65, y: 40, w: 24, rot: 8 },
+    mobile: { x: 71, y: 49, w: 28, rot: 8 },
   },
   {
     id: "ayvstack",
     file: "ayvstack-logo-white.png",
-    name: "AYV Automation Stack",
-    // PLACEHOLDER: Automation Stack description.
-    description: "Tools for leads, bookings, quotes, and reviews.",
+    name: "AYV Onderhoud",
+    description: "The product: boiler maintenance for heating installers.",
     status: "live",
     href: AUTOMATION_STACK_URL,
-    z: 2,
-    desktop: { x: 32.2, y: 65.62, w: 19.46, rot: 0 },
-    mobile: { x: 35, y: 38, w: 26, rot: -8 },
+    z: 3,
+    desktop: { x: 30.5, y: 60.5, w: 25, rot: 0 },
+    mobile: { x: 31, y: 54, w: 36, rot: -6 },
   },
   {
     id: "dilipaints",
@@ -113,7 +107,7 @@ export const hubLogos: HubLogo[] = [
     href: "https://dilipaints.be/",
     z: 4,
     desktop: { x: 62.85, y: 80.73, w: 10.83, rot: 20 },
-    mobile: { x: 50, y: 50, w: 16, rot: 15 },
+    mobile: { x: 38, y: 78, w: 18, rot: 15 },
   },
   {
     id: "kleuro",
@@ -124,78 +118,6 @@ export const hubLogos: HubLogo[] = [
     status: "soon",
     z: 4,
     desktop: { x: 70.67, y: 34.16, w: 10.88, rot: 20 },
-    mobile: { x: 72, y: 56, w: 16, rot: -15 },
-  },
-  {
-    id: "avyro",
-    file: "avyro-logo-w.png",
-    name: "Avyro",
-    // PLACEHOLDER: Avyro description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("avyro"),
-    z: 3,
-    desktop: { x: 42.87, y: 66.78, w: 11.61, rot: -100 },
-    mobile: { x: 40, y: 65, w: 15, rot: -10 },
-  },
-  {
-    id: "velto",
-    file: "velto-logo-w.png",
-    name: "Velto",
-    // PLACEHOLDER: Velto description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("velto"),
-    z: 3,
-    desktop: { x: 38.88, y: 56.92, w: 10.93, rot: -20 },
-    mobile: { x: 58, y: 64, w: 15, rot: 10 },
-  },
-  {
-    id: "rovyn",
-    file: "rovyn-logo-w.png",
-    name: "Rovyn",
-    // PLACEHOLDER: Rovyn description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("rovyn"),
-    z: 3,
-    desktop: { x: 26.88, y: 52.62, w: 9.89, rot: 20 },
-    mobile: { x: 25, y: 74, w: 14, rot: 5 },
-  },
-  {
-    id: "orvyn",
-    file: "orvyn-logo-w.png",
-    name: "Orvyn",
-    // PLACEHOLDER: Orvyn description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("orvyn"),
-    z: 3,
-    desktop: { x: 32.68, y: 44.68, w: 11.51, rot: 0 },
-    mobile: { x: 45, y: 76, w: 14, rot: -5 },
-  },
-  {
-    id: "nexro",
-    file: "nexro-logo-w.png",
-    name: "Nexro",
-    // PLACEHOLDER: Nexro description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("nexro"),
-    z: 3,
-    desktop: { x: 39.71, y: 81.92, w: 9.59, rot: 0 },
-    mobile: { x: 63, y: 76, w: 14, rot: 8 },
-  },
-  {
-    id: "ravelo",
-    file: "ravelo-logo-w.png",
-    name: "Ravelo",
-    // PLACEHOLDER: Ravelo description.
-    description: "Part of the AYV Automation Stack.",
-    status: "live",
-    href: moduleHref("ravelo"),
-    z: 3,
-    desktop: { x: 22.49, y: 65.87, w: 11.86, rot: 0 },
-    mobile: { x: 78, y: 72, w: 14, rot: -8 },
+    mobile: { x: 20, y: 76, w: 16, rot: -15 },
   },
 ];

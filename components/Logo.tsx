@@ -7,7 +7,7 @@ export type LogoBrand = "ayvwrld" | "ayvstack" | "oma" | "rated" | "kleuro" | "d
 
 const altText: Record<LogoBrand, string> = {
   ayvwrld: "AYV WRLD",
-  ayvstack: "AYV Automation Pack",
+  ayvstack: "AYV Onderhoud",
   oma: "One Man Army Stack",
   rated: "Rated",
   kleuro: "Kleuro",
