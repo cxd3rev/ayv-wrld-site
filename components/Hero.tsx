@@ -39,7 +39,7 @@ export function Hero() {
               </p>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <a
-                  href={hero.primaryCta.href}
+                  href={siteHref(hero.primaryCta.href)}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full bg-paper px-6 text-sm font-medium text-ink transition duration-300 hover:scale-[1.03] sm:w-auto"
                 >
                   {hero.primaryCta.label}

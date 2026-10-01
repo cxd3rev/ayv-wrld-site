@@ -3,8 +3,8 @@ import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
 import { WaitlistForm } from "@/components/WaitlistForm";
-import { pageHref } from "@/lib/paths";
-import { product, products, service } from "@/lib/site";
+import { siteHref } from "@/lib/paths";
+import { product, products, work } from "@/lib/site";
 
 function SectionLabel({ index, label }: { index: string; label: string }) {
   return (
@@ -22,18 +22,17 @@ export function Products() {
       <Texture />
       <div className="shell relative z-10">
         <Reveal>
-          <SectionLabel index="02" label="Product" />
+          <SectionLabel index="02" label="Projects" />
           <h2 className="max-w-3xl font-display text-[2.25rem] font-bold leading-[0.95] tracking-display sm:text-6xl sm:leading-[0.92] lg:text-7xl">
             {products.title}
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:mt-12 lg:grid-cols-12 lg:gap-5">
-          {/* The one product. */}
-          <Reveal className="lg:col-span-8">
+        <div className="mt-10 sm:mt-12">
+          <Reveal>
             <article
               id="product"
-              className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-10 md:hover:-translate-y-1 lg:min-h-[460px] lg:p-12"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-10 md:hover:-translate-y-1 lg:p-12"
             >
               <div
                 aria-hidden
@@ -46,7 +45,7 @@ export function Products() {
                   <div className="flex items-center gap-4">
                     <Logo brand="ayvstack" className="h-12 w-12 sm:h-16 sm:w-16" />
                     <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
-                      {product.label} · {product.niche}
+                      {product.label}
                     </p>
                   </div>
                   <h3 className="mt-6 max-w-xl break-words font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:mt-8 sm:text-5xl sm:leading-[0.95]">
@@ -55,17 +54,6 @@ export function Products() {
                   <p className="mt-5 max-w-lg text-base leading-relaxed text-paper/70 md:text-lg">
                     {product.pitch}
                   </p>
-                  <ul className="mt-6 max-w-lg">
-                    {product.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex gap-3 border-t border-white/10 py-3 text-sm text-paper/75"
-                      >
-                        <span aria-hidden className="mt-[7px] inline-block h-1.5 w-1.5 shrink-0 bg-navy" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <ArrowLink href={product.href} external={product.external}>
@@ -74,25 +62,6 @@ export function Products() {
                   </ArrowLink>
                   <p className="text-xs text-paper/45">{product.status}</p>
                 </div>
-              </div>
-            </article>
-          </Reveal>
-
-          {/* The one service, same niche. */}
-          <Reveal delay={0.06} className="lg:col-span-4">
-            <article
-              id="service"
-              className="group relative flex h-full flex-col rounded-2xl border border-navy/60 bg-card p-5 transition duration-300 ease-out hover:border-navy sm:p-8"
-            >
-              <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
-                {service.label}
-              </p>
-              <h3 className="mt-5 font-display text-[1.75rem] font-bold leading-[1] tracking-display sm:text-3xl">
-                {service.name}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-paper/65">{service.pitch}</p>
-              <div className="mt-auto pt-8">
-                <ArrowLink href={pageHref(service.href)}>{service.cta}</ArrowLink>
               </div>
             </article>
           </Reveal>
@@ -152,6 +121,27 @@ export function Products() {
             );
           })}
         </div>
+
+        <Reveal>
+          <h3 className="mt-16 border-t border-white/10 pt-8 font-display text-2xl font-semibold tracking-display sm:mt-20 sm:text-3xl">
+            Client work
+          </h3>
+        </Reveal>
+        <Reveal className="mt-6">
+          <article className="flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 sm:max-w-md sm:p-8">
+            <Logo brand="dili" className="h-10 w-10 sm:h-12 sm:w-12" />
+            <h4 className="mt-6 font-display text-[1.5rem] font-bold tracking-display sm:text-2xl">
+              {work.dili.name}
+            </h4>
+            <p className="mt-3 text-sm leading-relaxed text-paper/65">{work.dili.description}</p>
+            <div className="mt-8">
+              <ArrowLink href={siteHref(work.dili.href)} external>
+                {work.dili.cta}
+                <span className="sr-only"> (opens in a new tab)</span>
+              </ArrowLink>
+            </div>
+          </article>
+        </Reveal>
       </div>
     </section>
   );
