@@ -59,7 +59,7 @@ export default function BuildPage() {
                             external={item.href.startsWith("http")}
                             className="mt-4 inline-flex text-sm text-paper/80 underline decoration-white/20 underline-offset-4 transition hover:decoration-navy"
                           >
-                            {item.href.startsWith("http") ? "Open" : "On the studio page"}
+                            {item.href.startsWith("http") ? "Open" : item.href.startsWith("/") ? "Open page" : "On the studio page"}
                           </SafeLink>
                         </article>
                       </li>

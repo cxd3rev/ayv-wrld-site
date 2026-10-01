@@ -3,33 +3,49 @@
  * plus empty slots for experiments and an archive.
  */
 
-import { course, products, work } from "@/lib/site";
+import { course, product, products, service, work } from "@/lib/site";
 
 export const build = {
   label: "Build",
   title: "What exists.",
   intro:
-    "Products, client work, and the course already on the studio page. Experiments and the archive stay empty until there is something real to put here.",
+    "The product, the service, side projects, client work and the course. Experiments stay empty until there is something real to put here.",
   groups: [
     {
-      label: "Products",
+      label: "Product",
       items: [
         {
-          name: products.featured.name,
+          name: product.name,
+          status: "In development",
+          note: product.pitch,
+          href: product.href,
+        },
+      ],
+    },
+    {
+      label: "Service",
+      items: [
+        {
+          name: service.name,
+          status: "Open for clients",
+          note: service.pitch,
+          href: service.href,
+        },
+      ],
+    },
+    {
+      label: "Side projects",
+      items: [
+        {
+          name: products.side[0].name,
           status: "Live",
-          note: products.featured.pitch,
-          href: products.featured.href,
+          note: products.side[0].pitch,
+          href: products.side[0].href ?? "#products",
         },
         {
-          name: products.upcoming[0].name,
-          status: "Live",
-          note: products.upcoming[0].pitch,
-          href: products.upcoming[0].href ?? "#products",
-        },
-        {
-          name: products.upcoming[1].name,
+          name: products.side[1].name,
           status: "Coming soon",
-          note: products.upcoming[1].pitch,
+          note: products.side[1].pitch,
           href: "#kleuro",
         },
       ],
@@ -62,5 +78,10 @@ export const build = {
   experiments: [] as { name: string; note: string }[],
   archiveLabel: "Archive",
   archiveEmpty: "Nothing archived yet.",
-  archive: [] as { name: string; note: string }[],
+  archive: [
+    {
+      name: "AYV Automation Stack",
+      note: "Six separate modules (Avyro, Velto, Rovyn, Orvyn, Nexro, Ravelo). Merged into one product for one trade in October 2026.",
+    },
+  ] as { name: string; note: string }[],
 };

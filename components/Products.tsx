@@ -3,7 +3,8 @@ import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
 import { WaitlistForm } from "@/components/WaitlistForm";
-import { products } from "@/lib/site";
+import { pageHref } from "@/lib/paths";
+import { product, products, service } from "@/lib/site";
 
 function SectionLabel({ index, label }: { index: string; label: string }) {
   return (
@@ -21,17 +22,18 @@ export function Products() {
       <Texture />
       <div className="shell relative z-10">
         <Reveal>
-          <SectionLabel index="02" label="Products" />
+          <SectionLabel index="02" label="Product" />
           <h2 className="max-w-3xl font-display text-[2.25rem] font-bold leading-[0.95] tracking-display sm:text-6xl sm:leading-[0.92] lg:text-7xl">
             {products.title}
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:mt-12 lg:grid-cols-2 lg:gap-5">
-          <Reveal className="lg:col-span-2">
+        <div className="mt-10 grid gap-4 sm:mt-12 lg:grid-cols-12 lg:gap-5">
+          {/* The one product. */}
+          <Reveal className="lg:col-span-8">
             <article
-              id="automation-pack"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-10 md:hover:-translate-y-1 lg:min-h-[420px] lg:p-14"
+              id="product"
+              className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-10 md:hover:-translate-y-1 lg:min-h-[460px] lg:p-12"
             >
               <div
                 aria-hidden
@@ -39,36 +41,82 @@ export function Products() {
               >
                 <Logo brand="ayvstack" decorative className="h-auto w-full" />
               </div>
-              <div className="relative flex h-full flex-col justify-between gap-8 sm:gap-12">
+              <div className="relative flex h-full flex-col justify-between gap-8 sm:gap-10">
                 <div>
-                  <span aria-hidden className="mb-5 inline-block h-2 w-2 bg-navy sm:mb-8" />
-                  <Logo brand="ayvstack" className="h-14 w-14 sm:h-20 sm:w-20" />
-                  <p className="mt-6 text-[11px] uppercase tracking-[0.2em] text-paper/50 sm:mt-10">
-                    Primary product
-                  </p>
-                  <h3 className="mt-3 max-w-xl break-words font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:text-5xl sm:leading-[0.95] lg:text-6xl">
-                    {products.featured.name}
+                  <div className="flex items-center gap-4">
+                    <Logo brand="ayvstack" className="h-12 w-12 sm:h-16 sm:w-16" />
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
+                      {product.label} · {product.niche}
+                    </p>
+                  </div>
+                  <h3 className="mt-6 max-w-xl break-words font-display text-[2rem] font-bold leading-[0.98] tracking-display sm:mt-8 sm:text-5xl sm:leading-[0.95]">
+                    {product.name}
                   </h3>
                   <p className="mt-5 max-w-lg text-base leading-relaxed text-paper/70 md:text-lg">
-                    {products.featured.pitch}
+                    {product.pitch}
                   </p>
+                  <ul className="mt-6 max-w-lg">
+                    {product.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex gap-3 border-t border-white/10 py-3 text-sm text-paper/75"
+                      >
+                        <span aria-hidden className="mt-[7px] inline-block h-1.5 w-1.5 shrink-0 bg-navy" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ArrowLink href={products.featured.href} external={products.featured.external}>
-                  {products.featured.cta}
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </ArrowLink>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <ArrowLink href={product.href} external={product.external}>
+                    {product.cta}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </ArrowLink>
+                  <p className="text-xs text-paper/45">{product.status}</p>
+                </div>
               </div>
             </article>
           </Reveal>
 
-          {products.upcoming.map((product, index) => {
-            const href = "href" in product ? product.href : undefined;
+          {/* The one service, same niche. */}
+          <Reveal delay={0.06} className="lg:col-span-4">
+            <article
+              id="service"
+              className="group relative flex h-full flex-col rounded-2xl border border-navy/60 bg-card p-5 transition duration-300 ease-out hover:border-navy sm:p-8"
+            >
+              <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
+                {service.label}
+              </p>
+              <h3 className="mt-5 font-display text-[1.75rem] font-bold leading-[1] tracking-display sm:text-3xl">
+                {service.name}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-paper/65">{service.pitch}</p>
+              <div className="mt-auto pt-8">
+                <ArrowLink href={pageHref(service.href)}>{service.cta}</ArrowLink>
+              </div>
+            </article>
+          </Reveal>
+        </div>
+
+        {/* Side projects: kept, but visibly not the focus. */}
+        <Reveal>
+          <div className="mt-16 flex flex-col gap-2 border-t border-white/10 pt-8 sm:mt-20 sm:flex-row sm:items-end sm:justify-between">
+            <h3 className="font-display text-2xl font-semibold tracking-display sm:text-3xl">
+              {products.sideTitle}
+            </h3>
+            <p className="max-w-sm text-sm text-paper/55">{products.sideIntro}</p>
+          </div>
+        </Reveal>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:gap-5">
+          {products.side.map((item, index) => {
+            const href = "href" in item ? item.href : undefined;
 
             return (
-              <Reveal key={product.id} delay={index * 0.06} className="h-full">
+              <Reveal key={item.id} delay={index * 0.06} className="h-full">
                 <article
-                  id={product.id}
-                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-8 md:hover:-translate-y-1 ${
+                  id={item.id}
+                  className={`group relative flex h-full flex-col rounded-2xl border border-white/10 bg-card p-5 transition duration-300 ease-out hover:border-white/20 sm:p-8 ${
                     href ? "" : "opacity-80 hover:opacity-100"
                   }`}
                 >
@@ -77,32 +125,26 @@ export function Products() {
                       Coming soon
                     </span>
                   )}
-                  {product.brand ? (
-                    <Logo brand={product.brand} className="h-12 w-12 sm:h-14 sm:w-14" />
-                  ) : null}
-                  <h3
-                    className={`font-display text-[1.75rem] font-bold tracking-display sm:text-3xl ${
-                      product.brand ? "mt-6 sm:mt-8" : "mt-1 pr-24 sm:pr-28"
-                    }`}
-                  >
-                    {product.name}
-                  </h3>
+                  <Logo brand={item.brand} className="h-10 w-10 sm:h-12 sm:w-12" />
+                  <h4 className="mt-6 font-display text-[1.5rem] font-bold tracking-display sm:text-2xl">
+                    {item.name}
+                  </h4>
                   <p className="mt-3 max-w-sm text-sm leading-relaxed text-paper/65">
-                    {product.pitch}
+                    {item.pitch}
                   </p>
                   <div className="mt-auto">
                     {href ? (
                       <div className="mt-8">
                         <ArrowLink
                           href={href}
-                          external={"external" in product ? product.external : false}
+                          external={"external" in item ? item.external : false}
                         >
-                          {"cta" in product ? product.cta : "Read more"}
+                          {"cta" in item ? item.cta : "Read more"}
                           <span className="sr-only"> (opens in a new tab)</span>
                         </ArrowLink>
                       </div>
                     ) : (
-                      <WaitlistForm product={product.name} />
+                      <WaitlistForm product={item.name} />
                     )}
                   </div>
                 </article>

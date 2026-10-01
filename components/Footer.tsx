@@ -39,8 +39,10 @@ export function Footer() {
   const year = new Date().getFullYear();
   // Hide dead "#" socials until real profile URLs are set in lib/site.ts.
   const liveSocials = socials.filter((item) => item.href && item.href !== "#");
-  const workLinks = footerLinks.filter((link) => !link.href.startsWith("/"));
-  const studioLinks = footerLinks.filter((link) => link.href.startsWith("/"));
+  // Studio pages sit on the right. The installer page is work, so it stays left.
+  const isStudio = (href: string) => href.startsWith("/") && href !== "/installateurs";
+  const workLinks = footerLinks.filter((link) => !isStudio(link.href));
+  const studioLinks = footerLinks.filter((link) => isStudio(link.href));
 
   return (
     <footer className="border-t border-white/10">
