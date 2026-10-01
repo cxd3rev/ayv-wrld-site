@@ -12,7 +12,7 @@ export const now = {
   items: [
     {
       label: "Building",
-      body: `${product.name} is a project I'm building. It has its own site. I also make websites for heating installers. Rated, Kleuro and AYV Invest stay side projects.`,
+      body: `I build websites for people who need one. ${product.name} is a separate project, on its own site.`,
       href: links.product,
     },
     {

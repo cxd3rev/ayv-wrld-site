@@ -51,12 +51,15 @@ export function Course() {
               </li>
             ))}
           </ol>
-          <SafeLink
-            href={course.href}
-            className="mt-10 inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
-          >
-            {course.cta}
-          </SafeLink>
+          {course.href.startsWith("http") ? (
+            <SafeLink
+              href={course.href}
+              external
+              className="mt-10 inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
+            >
+              {course.cta}
+            </SafeLink>
+          ) : null}
         </Reveal>
       </div>
     </section>

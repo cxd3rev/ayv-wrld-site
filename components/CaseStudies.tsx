@@ -17,7 +17,7 @@ export function CaseStudies() {
       <div className="shell relative z-10">
         <Reveal>
           <p className="mb-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55">
-            <span>04</span>
+            <span>03</span>
             <span className="h-px w-8 bg-white/20" />
             <span>Work</span>
           </p>

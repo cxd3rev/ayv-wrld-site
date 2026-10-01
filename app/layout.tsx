@@ -19,7 +19,7 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   title: "AYV WRLD — Achieve Your Vision",
   description:
-    "Independent developer building SaaS products, apps, and tools under the AYV WRLD name.",
+    "AYV WRLD builds websites for anyone who needs one.",
 };
 
 export default function RootLayout({

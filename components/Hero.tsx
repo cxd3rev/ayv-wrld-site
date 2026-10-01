@@ -1,4 +1,3 @@
-import { LogoMass } from "@/components/LogoMass";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { siteHref } from "@/lib/paths";
@@ -7,8 +6,7 @@ import { hero } from "@/lib/site";
 export function Hero() {
   return (
     <>
-      <LogoMass />
-      <section aria-labelledby="studio-title" className="relative py-16 sm:py-20 md:py-28 lg:py-32">
+      <section aria-labelledby="studio-title" className="relative pb-16 pt-28 sm:pb-20 sm:pt-32 md:pb-28 md:pt-40 lg:pb-32">
         <div className="shell">
           <div className="flex items-end justify-between gap-4 sm:gap-8 lg:items-center lg:gap-16">
             <Reveal className="min-w-0 flex-1">
