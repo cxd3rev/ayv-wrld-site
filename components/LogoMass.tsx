@@ -168,6 +168,60 @@ function hitTest(
   return null;
 }
 
+const AYV_WRLD_LOGO = "ayvwrld-logo-white.png";
+const MOBILE_SPIN_DURATION = 16;
+
+function MobileHeroLogo({ reduce }: { reduce: boolean }) {
+  return (
+    <section
+      aria-label="AYV WRLD"
+      className="relative flex min-h-[70svh] flex-col items-center justify-center bg-[#0A0A0A] px-0 pb-8 pt-20"
+    >
+      <div className="relative h-56 w-full">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[46%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 68%)",
+          }}
+        />
+        {/* Outer shell centers; inner motion.div owns rotate so transforms don't clash. */}
+        <div
+          className="absolute left-1/2 top-1/2 w-48 sm:w-52"
+          style={{ transform: "translate(-50%, -50%)" }}
+        >
+          <motion.div
+            animate={reduce ? undefined : { rotate: 360 }}
+            transition={
+              reduce
+                ? undefined
+                : { duration: MOBILE_SPIN_DURATION, repeat: Infinity, ease: "linear" }
+            }
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoSrc(AYV_WRLD_LOGO)}
+              alt="AYV WRLD"
+              draggable={false}
+              className="h-auto w-full select-none"
+            />
+          </motion.div>
+        </div>
+      </div>
+      <p className="relative z-10 mt-6 max-w-xs px-6 text-center md:mt-3 md:max-w-sm md:px-6">
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/80">
+          AYV WRLD
+        </span>
+        {/* PLACEHOLDER: one line under the cluster. */}
+        <span className="mt-2 block text-sm leading-snug text-paper/60 md:text-xs">
+          Products, tools, and a course under one name.
+        </span>
+      </p>
+    </section>
+  );
+}
+
 export function LogoMass() {
   const reduce = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -259,6 +313,11 @@ export function LogoMass() {
   useEffect(() => {
     return () => window.clearTimeout(clearTimer.current);
   }, []);
+
+  // Mobile-only: single centered spinning logo. Desktop path below is unchanged.
+  if (mobile) {
+    return <MobileHeroLogo reduce={reduce === true} />;
+  }
 
   const spring: Transition = reduce
     ? { duration: 0.12, ease: "easeOut" }
