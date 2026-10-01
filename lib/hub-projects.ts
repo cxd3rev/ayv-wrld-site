@@ -79,7 +79,7 @@ export const hubLogos: HubLogo[] = [
     description: "A course on building and shipping SaaS products solo.",
     status: "live",
     // TODO: replace this temporary #course link with OMA_SITE_URL.
-    href: OMA_SITE_URL || "#course",
+    href: OMA_SITE_URL || "/course",
     z: 3,
     desktop: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },
     mobile: { x: 51.73, y: 76.1, w: 22.47, rot: 0 },

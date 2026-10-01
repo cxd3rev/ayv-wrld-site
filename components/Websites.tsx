@@ -1,9 +1,14 @@
+"use client";
+
+import { useLocale } from "@/components/Locale";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
 import { siteHref } from "@/lib/paths";
-import { websites } from "@/lib/site";
 
 export function Websites() {
+  const { copy } = useLocale();
+  const websites = copy.websites;
+
   return (
     <section
       id="websites"
@@ -63,7 +68,7 @@ export function Websites() {
         <Reveal>
           <p className="mt-10 max-w-xl text-sm leading-relaxed text-paper/55">{websites.note}</p>
           <a
-            href={siteHref(websites.href)}
+            href={siteHref("#contact")}
             className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-paper px-6 text-sm font-medium text-ink transition duration-300 hover:scale-[1.03] sm:w-auto"
           >
             {websites.cta}

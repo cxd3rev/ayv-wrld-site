@@ -1,10 +1,15 @@
+"use client";
+
+import { useLocale } from "@/components/Locale";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { SafeLink } from "@/components/SafeLink";
 import { Texture } from "@/components/Texture";
-import { course } from "@/lib/site";
+import { links } from "@/lib/site";
 
 export function Course() {
+  const { copy } = useLocale();
+  const course = copy.course;
   return (
     <section
       id="course"
@@ -21,13 +26,12 @@ export function Course() {
       <div className="shell relative z-10 grid items-start gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-16">
         <Reveal className="min-w-0 lg:col-span-5">
           <p className="mb-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55 sm:mb-8">
-            <span>05</span>
             <span className="h-px w-8 bg-white/20" />
-            <span>Course</span>
+            <span>{course.section}</span>
           </p>
           <Logo brand="oma" className="h-20 w-20 sm:h-28 sm:w-28" />
           <p className="mt-6 text-[11px] uppercase tracking-[0.2em] text-paper/50 sm:mt-8">
-            {course.name}
+            One Man Army Stack
           </p>
         </Reveal>
 
@@ -39,21 +43,21 @@ export function Course() {
             {course.description}
           </p>
           <ol className="mt-10 max-w-xl">
-            {course.steps.map((step) => (
+            {course.steps.map((step, index) => (
               <li
-                key={step.n}
+                key={step}
                 className="flex gap-5 border-t border-white/10 py-4 text-sm text-paper/80 sm:text-base"
               >
                 <span className="w-8 shrink-0 font-display text-sm tracking-display text-paper/40">
-                  {step.n}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
-                <span>{step.title}</span>
+                <span>{step}</span>
               </li>
             ))}
           </ol>
-          {course.href.startsWith("http") ? (
+          {links.course.startsWith("http") ? (
             <SafeLink
-              href={course.href}
+              href={links.course}
               external
               className="mt-10 inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
             >

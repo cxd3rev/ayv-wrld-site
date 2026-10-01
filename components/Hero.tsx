@@ -1,9 +1,16 @@
+"use client";
+
+import { useLocale } from "@/components/Locale";
 import { Logo } from "@/components/Logo";
 import { Reveal } from "@/components/Reveal";
 import { siteHref } from "@/lib/paths";
-import { hero } from "@/lib/site";
+
+const title = ["Achieve", "Your", "Vision"];
 
 export function Hero() {
+  const { copy } = useLocale();
+  const hero = copy.hero;
+
   return (
     <>
       <section aria-labelledby="studio-title" className="relative pb-16 pt-28 sm:pb-20 sm:pt-32 md:pb-28 md:pt-40 lg:pb-32">
@@ -18,7 +25,7 @@ export function Hero() {
                 id="studio-title"
                 className="mt-5 max-w-[11ch] font-display text-[2.5rem] font-bold leading-[0.9] tracking-display sm:mt-8 sm:text-7xl sm:leading-[0.88] lg:text-8xl"
               >
-                {hero.title.map((line) => (
+                {title.map((line) => (
                   <span key={line} className="block">
                     {line}
                   </span>
@@ -37,16 +44,16 @@ export function Hero() {
               </p>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <a
-                  href={siteHref(hero.primaryCta.href)}
+                  href={siteHref("#websites")}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full bg-paper px-6 text-sm font-medium text-ink transition duration-300 hover:scale-[1.03] sm:w-auto"
                 >
-                  {hero.primaryCta.label}
+                  {hero.primary}
                 </a>
                 <a
-                  href={siteHref(hero.secondaryCta.href)}
+                  href={siteHref("#work")}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
                 >
-                  {hero.secondaryCta.label}
+                  {hero.secondary}
                 </a>
               </div>
             </div>

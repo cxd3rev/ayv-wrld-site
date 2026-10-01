@@ -40,7 +40,7 @@ export const build = {
           name: course.name,
           status: "On the homepage",
           note: course.description,
-          href: "/#course",
+          href: "/course",
         },
       ],
     },

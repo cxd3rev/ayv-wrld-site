@@ -1,12 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { useLocale } from "@/components/Locale";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
-import { work } from "@/lib/site";
+import { links } from "@/lib/site";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function CaseStudies() {
-  const study = work.dili;
+  const { copy } = useLocale();
+  const study = copy.work;
 
   return (
     <section
@@ -19,10 +23,10 @@ export function CaseStudies() {
           <p className="mb-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55">
             <span>03</span>
             <span className="h-px w-8 bg-white/20" />
-            <span>Work</span>
+            <span>{study.label}</span>
           </p>
           <h2 className="font-display text-[2.25rem] font-bold leading-[0.95] tracking-display sm:text-6xl sm:leading-[0.92]">
-            {work.title}
+            {study.title}
           </h2>
         </Reveal>
 
@@ -42,7 +46,7 @@ export function CaseStudies() {
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#111111]">
                   <Image
                     src={`${basePath}/previews/dili-home.jpg`}
-                    alt="Dili Paints homepage"
+                    alt={study.alt}
                     fill
                     unoptimized
                     className="object-cover object-top"
@@ -54,17 +58,17 @@ export function CaseStudies() {
 
             <div className="min-w-0 lg:col-span-5 lg:pb-2">
               <p className="text-[10px] uppercase tracking-[0.18em] text-paper/45">
-                Client work
+                {study.client}
               </p>
               <h3 className="mt-4 font-display text-[1.75rem] font-semibold tracking-display sm:text-4xl">
-                {study.name}
+                Dili Paints
               </h3>
               <p className="mt-4 max-w-md text-base leading-relaxed text-paper/65">
                 {study.description}
               </p>
               <p className="mt-3 text-sm text-paper/45">{study.meta}</p>
               <a
-                href={study.href}
+                href={links.diliPaints}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="group relative mt-8 inline-flex items-center gap-2 text-sm font-medium text-paper"

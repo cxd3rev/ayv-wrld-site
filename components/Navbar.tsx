@@ -2,9 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { LanguageSwitch, useLocale } from "@/components/Locale";
 import { Logo } from "@/components/Logo";
 import { homeHref, siteHref } from "@/lib/paths";
-import { navLinks } from "@/lib/site";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,6 +32,14 @@ export function Navbar() {
   }, [open]);
 
   const solid = scrolled || open;
+  const { copy: text } = useLocale();
+  const navLinks = [
+    { href: "#websites", label: text.nav.websites },
+    { href: "#work", label: text.nav.work },
+    { href: "/automation", label: text.nav.product },
+    { href: "/course", label: text.nav.course },
+    { href: "#about", label: text.nav.about },
+  ];
 
   return (
     <header
@@ -53,7 +61,7 @@ export function Navbar() {
           </span>
         </a>
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label={text.nav.primary} className="hidden items-center gap-5 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -63,22 +71,25 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+          <LanguageSwitch />
           <a
             href={homeHref("contact")}
             className="inline-flex h-10 items-center rounded-full bg-navy px-4 text-[13px] font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0]"
           >
-            Get in touch
+            {text.nav.contact}
           </a>
         </nav>
 
+        <LanguageSwitch className="lg:hidden" />
+
         <button
           type="button"
-          className="relative -mr-1 flex h-11 w-11 shrink-0 items-center justify-center md:hidden"
+          className="relative -mr-1 flex h-11 w-11 shrink-0 items-center justify-center lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
         >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+          <span className="sr-only">{open ? text.nav.closeMenu : text.nav.openMenu}</span>
           <span
             className={`absolute left-2.5 right-2.5 h-px bg-paper transition duration-300 ${
               open ? "top-1/2 rotate-45" : "top-[15px]"
@@ -96,12 +107,12 @@ export function Navbar() {
         {open ? (
           <motion.nav
             id="mobile-nav"
-            aria-label="Mobile"
+            aria-label={text.nav.mobile}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-1 overflow-y-auto overscroll-contain bg-ink px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col gap-1 overflow-y-auto overscroll-contain bg-ink px-5 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-6 lg:hidden"
           >
             {navLinks.map((link) => (
               <a
@@ -118,7 +129,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex h-12 min-h-[48px] w-full items-center justify-center rounded-full bg-navy text-sm font-medium text-paper"
             >
-              Get in touch
+              {text.nav.contact}
             </a>
           </motion.nav>
         ) : null}

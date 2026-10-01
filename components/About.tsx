@@ -1,12 +1,15 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useLocale } from "@/components/Locale";
 import { Reveal } from "@/components/Reveal";
 import { Texture } from "@/components/Texture";
-import { about, links } from "@/lib/site";
+import { links } from "@/lib/site";
 
 export function About() {
   const [opened, setOpened] = useState(false);
+  const { copy } = useLocale();
+  const about = copy.about;
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,9 +33,9 @@ export function About() {
       <div className="shell relative z-10 grid gap-10 sm:gap-14 lg:grid-cols-2 lg:gap-20">
         <Reveal className="min-w-0">
           <p className="mb-5 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-paper/55">
-            <span>06</span>
+            <span>04</span>
             <span className="h-px w-8 bg-white/20" />
-            <span>About</span>
+            <span>{about.section}</span>
           </p>
           <h2 className="font-display text-[2.25rem] font-bold leading-[0.95] tracking-display sm:text-6xl sm:leading-[0.92]">
             {about.title}
@@ -63,11 +66,11 @@ export function About() {
             className="rounded-2xl border border-white/10 bg-card p-5 sm:p-8"
           >
             <p className="text-[11px] uppercase tracking-[0.2em] text-paper/50">
-              Contact
+              {about.contact}
             </p>
             <div className="mt-6 space-y-4">
               <label className="block">
-                <span className="mb-2 block text-xs text-paper/75">Name</span>
+                <span className="mb-2 block text-xs text-paper/75">{about.name}</span>
                 <input
                   name="name"
                   type="text"
@@ -77,7 +80,7 @@ export function About() {
                 />
               </label>
               <label className="block">
-                <span className="mb-2 block text-xs text-paper/75">Email</span>
+                <span className="mb-2 block text-xs text-paper/75">{about.email}</span>
                 <input
                   name="email"
                   type="email"
@@ -87,7 +90,7 @@ export function About() {
                 />
               </label>
               <label className="block">
-                <span className="mb-2 block text-xs text-paper/75">Message</span>
+                <span className="mb-2 block text-xs text-paper/75">{about.message}</span>
                 <textarea
                   name="message"
                   required
@@ -100,12 +103,10 @@ export function About() {
               type="submit"
               className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-full bg-navy px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:bg-[#2E5FE0] sm:w-auto"
             >
-              Get in touch
+              {about.submit}
             </button>
             <p className="mt-4 text-xs leading-relaxed text-paper/45">
-              {opened
-                ? "Your email app should be open with this message."
-                : "Opens your email app. Nothing is stored on this site."}
+              {opened ? about.opened : about.hint}
             </p>
           </form>
         </Reveal>

@@ -3,7 +3,7 @@
  * Search this file for "PLACEHOLDER" and replace those lines.
  *
  * The homepage sells websites. Dili Paints stays there as proof of work.
- * AYV Automation and One Man Army Stack are sections on the same page.
+ * AYV Automation and One Man Army Stack each have their own page.
  */
 
 export const links = {
@@ -28,8 +28,8 @@ export const links = {
 export const navLinks = [
   { href: "#websites", label: "Websites" },
   { href: "#work", label: "Work" },
-  { href: "#product", label: "Automation" },
-  { href: "#course", label: "Course" },
+  { href: "/automation", label: "Automation" },
+  { href: "/course", label: "Course" },
   { href: "#about", label: "About" },
 ] as const;
 
@@ -135,6 +135,6 @@ export const about = {
 
 export const footerLinks = [
   { label: "Dili Paints", href: links.diliPaints, external: true },
-  { label: "AYV Automation", href: links.product, external: true },
-  { label: "One Man Army Stack", href: "#course" },
+  { label: "AYV Automation", href: "/automation" },
+  { label: "One Man Army Stack", href: "/course" },
 ] as const;
