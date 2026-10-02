@@ -13,6 +13,7 @@ const nl = {
   skip: "Ga naar de inhoud",
   languageLabel: "Taal",
   back: "Terug naar het profiel",
+  tools: "Apps die ik gebruik",
   nav: {
     websites: "Websites",
     work: "Werk",
@@ -149,6 +150,7 @@ const fr = {
   skip: "Aller au contenu",
   languageLabel: "Langue",
   back: "Retour au profil",
+  tools: "Applications que j'utilise",
   nav: {
     websites: "Sites",
     work: "Travail",
@@ -285,6 +287,7 @@ const en = {
   skip: "Skip to content",
   languageLabel: "Language",
   back: "Back to the profile",
+  tools: "Apps I use",
   nav: {
     websites: "Websites",
     work: "Work",
