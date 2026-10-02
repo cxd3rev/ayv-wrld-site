@@ -2,7 +2,7 @@
  * Copy and outbound links for AYV WRLD.
  * Search this file for "PLACEHOLDER" and replace those lines.
  *
- * The homepage sells websites. Dili Paints stays there as proof of work.
+ * The homepage is Aron's profile. Projects are listed there.
  * AYV Automation and One Man Army Stack each have their own page.
  */
 

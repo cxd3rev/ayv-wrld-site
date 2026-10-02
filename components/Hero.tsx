@@ -44,13 +44,13 @@ export function Hero() {
               </p>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <a
-                  href={siteHref("#websites")}
+                  href={siteHref("#projects")}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full bg-paper px-6 text-sm font-medium text-ink transition duration-300 hover:scale-[1.03] sm:w-auto"
                 >
                   {hero.primary}
                 </a>
                 <a
-                  href={siteHref("#work")}
+                  href={siteHref("#contact")}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-sm font-medium text-paper transition duration-300 hover:scale-[1.03] hover:border-navy sm:w-auto"
                 >
                   {hero.secondary}

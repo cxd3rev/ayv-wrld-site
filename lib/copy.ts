@@ -9,15 +9,16 @@ export const localeNames: Record<Locale, string> = {
 };
 
 const nl = {
-  metaDescription: "AYV WRLD bouwt websites voor iedereen die er een nodig heeft.",
+  metaDescription: "AYV WRLD is het profiel van Aron, met de projecten die hij bouwt.",
   skip: "Ga naar de inhoud",
   languageLabel: "Taal",
-  back: "Terug naar websites",
+  back: "Terug naar het profiel",
   nav: {
     websites: "Websites",
     work: "Werk",
     product: "Automatisering",
     course: "Cursus",
+    projects: "Projecten",
     about: "Over",
     contact: "Neem contact op",
     openMenu: "Menu openen",
@@ -26,11 +27,10 @@ const nl = {
     mobile: "Mobiel menu",
   },
   hero: {
-    eyebrow: "Websites · België",
-    subtext:
-      "Ik bouw websites voor iedereen die er een nodig heeft. Duidelijk, snel, en gemaakt zodat mensen je vinden en contact opnemen.",
-    primary: "Een website laten maken",
-    secondary: "Bekijk het werk",
+    eyebrow: "Profiel · België",
+    subtext: "Ik ben Aron. Dit is waar ik de projecten laat zien die ik bouw.",
+    primary: "Bekijk de projecten",
+    secondary: "Neem contact op",
   },
   websites: {
     label: "Websites",
@@ -102,10 +102,38 @@ const nl = {
     ],
     cta: "Bekijk de cursus",
   },
+  showcase: {
+    label: "Projecten",
+    title: "Wat ik bouw.",
+    intro: "Drie projecten. Elk heeft zijn eigen plek.",
+    items: [
+      {
+        id: "dili",
+        name: "Dili Paints",
+        kind: "Website",
+        body: "Een website voor een schildersbedrijf in Vlaanderen.",
+        cta: "Bekijk de live site",
+      },
+      {
+        id: "automation",
+        name: "AYV Automation",
+        kind: "Project",
+        body: "Een project dat ik bouw voor verwarmingsinstallateurs in Vlaanderen. Het heeft een eigen site.",
+        cta: "Open het project",
+      },
+      {
+        id: "course",
+        name: "One Man Army Stack",
+        kind: "Cursus",
+        body: "Een cursus in stappen over hoe ik solo SaaS-producten bouw en lanceer.",
+        cta: "Open de cursus",
+      },
+    ],
+  },
   about: {
     section: "Over",
-    title: "Gebouwd door één persoon.",
-    bio: "Ik ben Aron. AYV WRLD is waar ik websites maak. Als je er een nodig hebt, schrijf of bel.",
+    title: "Aron",
+    bio: "Ik ben Aron. AYV WRLD is mijn profiel. Schrijf of bel als je een project wilt bespreken.",
     contact: "Contact",
     name: "Naam",
     email: "E-mail",
@@ -117,15 +145,16 @@ const nl = {
 };
 
 const fr = {
-  metaDescription: "AYV WRLD crée des sites web pour toute personne qui en a besoin.",
+  metaDescription: "AYV WRLD est le profil d'Aron, avec les projets qu'il construit.",
   skip: "Aller au contenu",
   languageLabel: "Langue",
-  back: "Retour aux sites",
+  back: "Retour au profil",
   nav: {
     websites: "Sites",
     work: "Travail",
     product: "Automatisation",
     course: "Cours",
+    projects: "Projets",
     about: "À propos",
     contact: "Me contacter",
     openMenu: "Ouvrir le menu",
@@ -134,11 +163,10 @@ const fr = {
     mobile: "Menu mobile",
   },
   hero: {
-    eyebrow: "Sites web · Belgique",
-    subtext:
-      "Je crée des sites pour toute personne qui en a besoin. Clairs, rapides, et faits pour que les gens vous trouvent et vous contactent.",
-    primary: "Faire un site",
-    secondary: "Voir le travail",
+    eyebrow: "Profil · Belgique",
+    subtext: "Je suis Aron. C'est ici que je montre les projets que je construis.",
+    primary: "Voir les projets",
+    secondary: "Me contacter",
   },
   websites: {
     label: "Sites",
@@ -210,10 +238,38 @@ const fr = {
     ],
     cta: "Voir le cours",
   },
+  showcase: {
+    label: "Projets",
+    title: "Ce que je construis.",
+    intro: "Trois projets. Chacun a sa propre place.",
+    items: [
+      {
+        id: "dili",
+        name: "Dili Paints",
+        kind: "Site",
+        body: "Un site pour une entreprise de peinture en Flandre.",
+        cta: "Voir le site en ligne",
+      },
+      {
+        id: "automation",
+        name: "AYV Automation",
+        kind: "Projet",
+        body: "Un projet que je construis pour les installateurs de chauffage en Flandre. Il a son propre site.",
+        cta: "Ouvrir le projet",
+      },
+      {
+        id: "course",
+        name: "One Man Army Stack",
+        kind: "Cours",
+        body: "Un cours en étapes sur la façon dont je construis et lance des produits SaaS en solo.",
+        cta: "Ouvrir le cours",
+      },
+    ],
+  },
   about: {
     section: "À propos",
-    title: "Construit par une seule personne.",
-    bio: "Je suis Aron. AYV WRLD est l'endroit où je fais des sites. Si vous en avez besoin, écrivez ou appelez.",
+    title: "Aron",
+    bio: "Je suis Aron. AYV WRLD est mon profil. Écrivez ou appelez si vous voulez parler d'un projet.",
     contact: "Contact",
     name: "Nom",
     email: "E-mail",
@@ -225,15 +281,16 @@ const fr = {
 };
 
 const en = {
-  metaDescription: "AYV WRLD builds websites for anyone who needs one.",
+  metaDescription: "AYV WRLD is Aron's profile, with the projects he builds.",
   skip: "Skip to content",
   languageLabel: "Language",
-  back: "Back to websites",
+  back: "Back to the profile",
   nav: {
     websites: "Websites",
     work: "Work",
     product: "Automation",
     course: "Course",
+    projects: "Projects",
     about: "About",
     contact: "Get in touch",
     openMenu: "Open menu",
@@ -242,11 +299,10 @@ const en = {
     mobile: "Mobile",
   },
   hero: {
-    eyebrow: "Websites · Belgium",
-    subtext:
-      "I build websites for anyone who needs one. Clear, fast, and made so people can find you and get in touch.",
-    primary: "Get a website",
-    secondary: "See the work",
+    eyebrow: "Profile · Belgium",
+    subtext: "I'm Aron. This is where I show the projects I build.",
+    primary: "See the projects",
+    secondary: "Get in touch",
   },
   websites: {
     label: "Websites",
@@ -318,10 +374,38 @@ const en = {
     ],
     cta: "Explore the course",
   },
+  showcase: {
+    label: "Projects",
+    title: "What I build.",
+    intro: "Three projects. Each one has its own place.",
+    items: [
+      {
+        id: "dili",
+        name: "Dili Paints",
+        kind: "Website",
+        body: "A website for a painting business in Flanders.",
+        cta: "View live site",
+      },
+      {
+        id: "automation",
+        name: "AYV Automation",
+        kind: "Project",
+        body: "A project I'm building for heating installers in Flanders. It has its own site.",
+        cta: "Open the project",
+      },
+      {
+        id: "course",
+        name: "One Man Army Stack",
+        kind: "Course",
+        body: "A step-by-step course on how I build and ship SaaS products solo.",
+        cta: "Open the course",
+      },
+    ],
+  },
   about: {
     section: "About",
-    title: "Built by one person.",
-    bio: "I'm Aron. AYV WRLD is where I make websites. If you need one, write or call.",
+    title: "Aron",
+    bio: "I'm Aron. AYV WRLD is my profile. Write or call if you want to talk about a project.",
     contact: "Contact",
     name: "Name",
     email: "Email",

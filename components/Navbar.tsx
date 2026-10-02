@@ -34,10 +34,7 @@ export function Navbar() {
   const solid = scrolled || open;
   const { copy: text } = useLocale();
   const navLinks = [
-    { href: "#websites", label: text.nav.websites },
-    { href: "#work", label: text.nav.work },
-    { href: "/automation", label: text.nav.product },
-    { href: "/course", label: text.nav.course },
+    { href: "#projects", label: text.nav.projects },
     { href: "#about", label: text.nav.about },
   ];
 

@@ -1,9 +1,8 @@
 import { About } from "@/components/About";
-import { CaseStudies } from "@/components/CaseStudies";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Navbar } from "@/components/Navbar";
-import { Websites } from "@/components/Websites";
+import { Projects } from "@/components/Projects";
 
 export default function HomePage() {
   return (
@@ -11,8 +10,7 @@ export default function HomePage() {
       <Navbar />
       <main id="main">
         <Hero />
-        <Websites />
-        <CaseStudies />
+        <Projects />
         <About />
       </main>
       <Footer />
