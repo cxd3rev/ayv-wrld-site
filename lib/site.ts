@@ -3,7 +3,7 @@
  * Search this file for "PLACEHOLDER" and replace those lines.
  *
  * The homepage is Aron's profile. Projects are listed there.
- * AYV Automation and One Man Army Stack each have their own page.
+ * AYV Automation has its own page. Rated links out to its live site.
  */
 
 export const links = {
@@ -136,5 +136,5 @@ export const about = {
 export const footerLinks = [
   { label: "Dili Paints", href: links.diliPaints, external: true },
   { label: "AYV Automation", href: "/automation" },
-  { label: "One Man Army Stack", href: "/course" },
+  { label: "Rated", href: links.rated, external: true },
 ] as const;

@@ -3,13 +3,13 @@
  * plus empty slots for experiments and an archive.
  */
 
-import { course, product, work } from "@/lib/site";
+import { links, product, work } from "@/lib/site";
 
 export const build = {
   label: "Build",
   title: "What exists.",
   intro:
-    "AYV Automation, Dili Paints, and One Man Army Stack.",
+    "AYV Automation, Dili Paints, and Rated.",
   groups: [
     {
       label: "Product",
@@ -34,13 +34,13 @@ export const build = {
       ],
     },
     {
-      label: "Course",
+      label: "Project",
       items: [
         {
-          name: course.name,
-          status: "On the homepage",
-          note: course.description,
-          href: "/course",
+          name: "Rated",
+          status: "Live",
+          note: "Discover, rate, and collect hip-hop albums.",
+          href: links.rated,
         },
       ],
     },

@@ -9,7 +9,7 @@ import { links } from "@/lib/site";
 const targets = {
   dili: { href: links.diliPaints, external: true },
   automation: { href: "/automation", external: false },
-  course: { href: "/course", external: false },
+  rated: { href: links.rated, external: true },
 } as const;
 
 export function Projects() {
